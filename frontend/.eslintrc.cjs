@@ -18,14 +18,14 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.json',
+    project: 'frontend/tsconfig.json',
   },
   plugins: ['@typescript-eslint', 'prettier', 'react', 'react-hooks'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
-      2, 
+      2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     'no-var': 'error',
