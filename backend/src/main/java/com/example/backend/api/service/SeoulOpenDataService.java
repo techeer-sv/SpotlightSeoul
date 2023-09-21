@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class SeoulOpenDataService {
-
     SeoulOpenDataFestivalFetchAPI seoulOpenDataFestivalFetchAPI;
     FestivalService festivalService;
 
@@ -24,13 +23,11 @@ public class SeoulOpenDataService {
         FestivalAPIResponse healthChechResponse =
             seoulOpenDataFestivalFetchAPI.fetchAPI(FestivalAPIRequest.healthCheckRequest());
         int totalCount = healthChechResponse.getCulturalEventInfo().getListTotalCount();
-
-        for (int i = 1; i < totalCount; i++) {
+        for (int i = 1; i < totalCount; i += 999) {
             FestivalAPIResponse festivalAPIResponse =
                 seoulOpenDataFestivalFetchAPI.fetchAPI(
                     FestivalAPIRequest.toRequest(i, 999));
-            saveFestivalData(
-                seoulOpenDataFestivalFetchAPI.filteringFestival(festivalAPIResponse));
+            saveFestivalData(festivalAPIResponse.getCulturalEventInfo().getRow());
         }
     }
 
@@ -39,5 +36,4 @@ public class SeoulOpenDataService {
             festivalService.saveFestival(row);
         }
     }
-
 }

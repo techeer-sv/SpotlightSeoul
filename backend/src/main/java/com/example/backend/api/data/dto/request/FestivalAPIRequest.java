@@ -27,7 +27,7 @@ public class FestivalAPIRequest {
     public static FestivalAPIRequest toRequest(int index, int size) {
         return FestivalAPIRequest.builder()
             .start(index)
-            .end(index)
+            .end(index+size)
             .size(size)
             .build();
     }

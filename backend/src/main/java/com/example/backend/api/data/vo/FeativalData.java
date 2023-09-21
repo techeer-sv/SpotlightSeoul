@@ -15,7 +15,7 @@ public class FeativalData {
     @JsonCreator
     public FeativalData(
             @JsonProperty("list_total_count") int listTotalCount,
-            @JsonProperty("row") List<FestivalRow> row){
+            @JsonProperty("FestivalRow") List<FestivalRow> row){
         this.listTotalCount = listTotalCount;
         this.row = row;
     }
