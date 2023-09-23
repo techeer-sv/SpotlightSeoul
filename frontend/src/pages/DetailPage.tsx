@@ -15,7 +15,7 @@ function DetailPage() {
           <img
             src={SampleImage1}
             alt="SampleImage1"
-            className="w-2/5 h-3/5 mx-16 rounded bg-no-repeat shadow-md"
+            className="w-2/5 h-3/5 mx-16 rounded-md bg-no-repeat shadow-lg shadow-slate-500"
           />
           {/* 공연 세부정보 */}
           <div className="flex flex-col items-start mx-16">
@@ -32,9 +32,9 @@ function DetailPage() {
             <span className="font-LexendDeca text-3xl font-bold mt-10">
               [2023 한강노들섬 클래식] 발레 백조의 호수
             </span>
-            <div className="flex flex-col">
+            <div className="flex flex-col space-y-16 mt-16">
               {/* 장소 */}
-              <div className="flex items-center mt-16">
+              <div className="flex items-center">
                 <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
                   장소
                 </span>
@@ -43,7 +43,7 @@ function DetailPage() {
                 </span>
               </div>
               {/* 기간 */}
-              <div className="flex items-center mt-16">
+              <div className="flex items-center">
                 <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
                   기간
                 </span>
@@ -52,7 +52,7 @@ function DetailPage() {
                 </span>
               </div>
               {/* 시간 */}
-              <div className="flex items-center mt-16">
+              <div className="flex items-center">
                 <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
                   시간
                 </span>
@@ -61,7 +61,7 @@ function DetailPage() {
                 </span>
               </div>
               {/* 대상 */}
-              <div className="flex items-center mt-16">
+              <div className="flex items-center">
                 <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
                   대상
                 </span>
@@ -70,7 +70,7 @@ function DetailPage() {
                 </span>
               </div>
               {/* 요금 */}
-              <div className="flex items-center mt-16">
+              <div className="flex items-center">
                 <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
                   요금
                 </span>
