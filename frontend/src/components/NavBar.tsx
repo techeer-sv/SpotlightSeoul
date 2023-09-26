@@ -3,20 +3,20 @@ import magnifier from '../assets/images/svg/magnifier.svg';
 
 function NavBar() {
   return (
-    <div className="flex justify-between items-center w-screen h-14 md:h-16 border-b-[1px] border-solid border-[#C6C6C6] bg-white">
+    <div className="flex h-14 w-screen items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
       {/* 로고 */}
       <button
-        className="flex basis-1/4 text-left text-xl md:text-2xl font-LexendDeca font-bold ml-5"
+        className="ml-5 flex basis-1/4 text-left font-LexendDeca text-xl font-bold md:text-2xl"
         type="button"
       >
         <span className="text-[#06439F]">Spotlight</span>
         <span className="text-[#FFD600]">Seoul</span>
       </button>
       {/* 검색창 */}
-      <div className="flex basis-2/4 w-11/12 h-7 sm:h-9 md:h-11 rounded-xl border-[1px] border-solid border-[#C6C6C6] bg-[#F9F9F9]">
-        <img className="w-4 md:w-5 ml-2" src={magnifier} alt="magnifier" />
+      <div className="flex h-7 w-11/12 basis-2/4 rounded-xl border-[1px] border-solid border-[#C6C6C6] bg-[#F9F9F9] sm:h-9 md:h-11">
+        <img className="ml-2 w-4 md:w-5" src={magnifier} alt="magnifier" />
         <input
-          className="bg-[#F9F9F9] ml-1 text-sm md:text-base"
+          className="ml-1 bg-[#F9F9F9] text-sm md:text-base"
           type="text"
           placeholder="search"
         />
