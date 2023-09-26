@@ -6,3 +6,8 @@
   font-family: 'Lexend Deca';
   src: url('./assets/fonts/LexendDeca-VariableFont_wght.ttf');
 }
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./assets/fonts/PretendardVariable.ttf');
+}
