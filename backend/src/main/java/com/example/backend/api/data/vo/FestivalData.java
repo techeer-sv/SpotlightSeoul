@@ -8,12 +8,12 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class FeativalData {
+public class FestivalData {
     private final int listTotalCount;
     private final List<FestivalRow> row;
 
     @JsonCreator
-    public FeativalData(
+    public FestivalData(
             @JsonProperty("list_total_count") int listTotalCount,
             @JsonProperty("FestivalRow") List<FestivalRow> row){
         this.listTotalCount = listTotalCount;

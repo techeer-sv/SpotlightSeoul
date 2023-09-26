@@ -1,6 +1,7 @@
 package com.example.backend.domain.festival.mapper;
 
 import com.example.backend.api.data.vo.FestivalRow;
+import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import org.springframework.stereotype.Component;
 
@@ -22,4 +23,16 @@ public class FestivalMapper {
             .title(row.getTitle())
             .build();
     }
+    public FestivalDetailResponse toResponse(Festival festival) {
+        return FestivalDetailResponse.builder()
+            .lat(festival.getLat())
+            .lot(festival.getLot())
+            .place(festival.getPlace())
+            .title(festival.getTitle())
+            .endDate(festival.getEndDate())
+            .strtDate(festival.getStrtDate())
+            .build();
+    }
+
+
 }

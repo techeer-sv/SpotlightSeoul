@@ -1,6 +1,8 @@
 package com.example.backend.domain.festival.service;
 
 import com.example.backend.api.data.vo.FestivalRow;
+import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.mapper.FestivalMapper;
 import com.example.backend.domain.festival.repository.FestivalRepository;
 import lombok.AccessLevel;
@@ -18,4 +20,11 @@ public class FestivalService {
     public void saveFestival(FestivalRow row) {
         festivalRepository.save(festivalMapper.toEntity(row));
     }
+
+    public FestivalDetailResponse findDetailFestival(Long id){
+        Festival festival = festivalRepository.findById(id).orElseThrow();
+        return festivalMapper.toResponse(festival);
+    }
+
+
 }
