@@ -1,6 +1,12 @@
 import MapSampleImage from '../assets/images/png/MapSampleImage.png';
 
-function MapInformation() {
+function MapInformation({
+  latitude,
+  longitude,
+}: {
+  latitude: number;
+  longitude: number;
+}) {
   return (
     <div>
       {/* 위치 정보(지도) */}
