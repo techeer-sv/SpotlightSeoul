@@ -1,5 +1,7 @@
 package com.example.backend.domain.user.entity;
 
+import org.hibernate.annotations.Where;
+
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.global.audit.Auditable;
 import com.example.backend.global.audit.BaseTime;
@@ -21,6 +23,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "users")
+@Where(clause = "is_deleted = false")
 public class User implements Auditable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +46,7 @@ public class User implements Auditable {
 	@Column(nullable = false)
 	private BaseTime baseTime;
 
+	@Column(name = "is_deleted")
 	private boolean isDeleted = false;
 
 	@Builder

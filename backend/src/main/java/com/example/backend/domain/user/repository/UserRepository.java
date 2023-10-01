@@ -12,6 +12,5 @@ import com.example.backend.domain.user.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	@Query("SELECT r FROM User r WHERE r.id = :id AND r.isDeleted = false")
-	Optional<User> findById(@Param("id") Long id);
+	Optional<User> findByIdAndIsDeletedFalse(Long id);
 }
