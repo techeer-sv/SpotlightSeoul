@@ -33,7 +33,7 @@ public class UserService {
 	}
 
 	public void deleteUser(Long userId) {
-		User user = userRepository.findByIdAndIsDeletedFalse(userId).orElseThrow();
+		User user = userRepository.findById(userId).orElseThrow();
 		user.softDelete();
 		userRepository.save(user);
 	}

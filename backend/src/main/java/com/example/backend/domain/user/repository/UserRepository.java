@@ -12,5 +12,4 @@ import com.example.backend.domain.user.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByIdAndIsDeletedFalse(Long id);
 }
