@@ -23,7 +23,7 @@ public class FestivalService {
 
     public FestivalDetailResponse findDetailFestival(Long id){
         Festival festival = festivalRepository.findById(id).orElseThrow();
-        return festivalMapper.toResponse(festival);
+        return festivalMapper.toFindResponse(festival);
     }
 
 
