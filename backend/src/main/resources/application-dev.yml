@@ -12,13 +12,23 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        format_sql: true
+#
   jpa:
+    database: mysql
     show-sql: true
     hibernate:
       ddl-auto: create
     properties:
       hibernate:
         format_sql: true
+    generate-ddl: true
 
   main:
     allow-bean-definition-overriding: true
