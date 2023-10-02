@@ -13,6 +13,5 @@ public class FestivalSearchResponse {
 	private Long id;
 	private String title;
 	private String mainImg;
-	private String orgLink;
 
 }

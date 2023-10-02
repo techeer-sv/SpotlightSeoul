@@ -40,7 +40,6 @@ public class FestivalMapper {
             .id(festival.getId())
             .title(festival.getTitle())
             .mainImg(festival.getMainImg())
-            .orgLink(festival.getOrgLink())
             .build();
     }
 
