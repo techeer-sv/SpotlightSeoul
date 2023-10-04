@@ -10,10 +10,7 @@ const loadScript = (src: string, callback: () => void) => {
   document.head.appendChild(script);
 };
 
-function MapInformation() {
-  const lat = 37.6037552097988;
-  const lot = 127.022203675321;
-
+function MapInformation({ lat, lot }: { lat: number; lot: number }) {
   const initMap = () => {
     // 추가 옵션 설정
     const mapOptions = {
@@ -37,7 +34,7 @@ function MapInformation() {
       map: mapInstance,
     });
 
-    // 코드 수정 부분: 마커 클릭 이벤트
+    // Marker 클릭 시 지도 초기화
     naver.maps.Event.addListener(marker, 'click', () => {
       mapInstance?.setCenter(new naver.maps.LatLng(lat, lot));
       mapInstance?.setZoom(16);
