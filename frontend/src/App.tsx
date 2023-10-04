@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import MainPage from './pages/MainPage';
 import DetailPage from './pages/DetailPage';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/detail" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
