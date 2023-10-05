@@ -1,6 +1,11 @@
 package com.example.backend.domain.festival.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.example.backend.api.data.vo.FestivalRow;
+import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.mapper.FestivalMapper;
@@ -23,9 +28,23 @@ public class FestivalService {
         festivalRepository.save(festivalMapper.toEntity(row));
     }
 
+    public FestivalDetailResponse findDetailFestival(Long id){
+        Festival festival = festivalRepository.findById(id).orElseThrow();
+        return festivalMapper.toFindResponse(festival);
+    }
+
+    public List<FestivalSearchResponse> searchFestival(String keyword) {
+        List<Festival> festivals = festivalRepository.findByTitleContaining(keyword);
+        //FIXME mapper로 분리하기
+        return festivals.stream()
+            .map(festivalMapper::toSearchResponse)
+            .collect(Collectors.toList());
+    }
+
     public FestivalPageResponse getFestivalByPagination(final int offset, final int size) {
         PageRequest request = PageRequest.of(offset, size);
         Page<Festival> postByPagenation = festivalRepository.findAll(request);
         return festivalMapper.toPageResponse(postByPagenation);
     }
+
 }

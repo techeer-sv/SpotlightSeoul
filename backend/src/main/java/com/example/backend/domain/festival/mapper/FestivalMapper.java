@@ -1,6 +1,8 @@
 package com.example.backend.domain.festival.mapper;
 
 import com.example.backend.api.data.vo.FestivalRow;
+import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -28,6 +30,28 @@ public class FestivalMapper {
             .build();
     }
 
+    public FestivalDetailResponse toFindResponse(Festival festival) {
+        return FestivalDetailResponse.builder()
+            .lat(festival.getLat())
+            .lot(festival.getLot())
+            .place(festival.getPlace())
+            .title(festival.getTitle())
+            .codename(festival.getCodeName())
+            .date(festival.getdate())
+            .mainImg(festival.getMainImg())
+            .useTrgt(festival.getuseTrgt())
+            .orgLink(festival.getOrgLink())
+            .build();
+    }
+
+    public FestivalSearchResponse toSearchResponse(Festival festival){
+        return  FestivalSearchResponse.builder()
+            .id(festival.getId())
+            .title(festival.getTitle())
+            .mainImg(festival.getMainImg())
+            .build();
+    }
+
     public FestivalResponse toResponse(Festival festival) {
         return FestivalResponse.builder()
             .id(festival.getId())
@@ -44,4 +68,5 @@ public class FestivalMapper {
             .postResponses(festivalResponseList)
             .build();
     }
+
 }
