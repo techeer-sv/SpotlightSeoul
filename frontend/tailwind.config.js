@@ -5,6 +5,7 @@ export default {
     extend: {},
     fontFamily: {
       LexendDeca: ['Lexend Deca'],
+      Pretendard: ['Pretendard'],
     },
   },
   plugins: [],

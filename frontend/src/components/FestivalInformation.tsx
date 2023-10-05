@@ -2,85 +2,82 @@ import SampleImage1 from '../assets/images/jpg/SampleImage1.jpeg';
 
 function FestivalInformation() {
   return (
-    <div>
-      {/* 공연 대표이미지 및 세부정보 */}
-      <div className="flex justify-center items-center w-full h-auto mx-0 mt-10">
-        {/* 대표이미지 */}
-        <img
-          src={SampleImage1}
-          alt="SampleImage1"
-          className="w-2/5 h-3/5 mx-16 rounded-md bg-no-repeat shadow-lg shadow-slate-500"
-        />
-        {/* 공연 세부정보 */}
-        <div className="flex flex-col items-start mx-16">
-          {/* 공연 분류 */}
+    <div className="mx-0 mt-14 flex h-auto w-11/12 max-w-[1400px] items-start justify-between">
+      {/* 대표이미지 */}
+      <img
+        src={SampleImage1}
+        alt="SampleImage1"
+        className="flex h-auto w-5/12 rounded-md bg-no-repeat shadow-lg shadow-slate-500"
+      />
+      {/* 공연 세부정보 */}
+      <div className="flex w-6/12 flex-shrink flex-col items-start">
+        {/* 공연 분류 */}
+        <div className="flex items-center">
+          <div className="mr-2 flex h-4 w-10 items-center justify-center rounded-sm bg-[#7EB2FF] text-center font-Pretendard text-[10px] font-bold sm:h-5 sm:w-12 sm:rounded-md sm:text-xs md:h-6 md:rounded-lg lg:h-8 lg:w-16 lg:text-base xl:h-9 xl:w-20 xl:rounded-xl xl:text-lg 2xl:h-11 2xl:w-24 2xl:rounded-2xl 2xl:text-xl">
+            공연
+          </div>
+          <span className="flex text-center font-Pretendard text-[10px] font-bold text-[#06439F] sm:text-xs lg:text-sm xl:text-base 2xl:text-lg">
+            뮤지컬
+          </span>
+        </div>
+        {/* 제목 */}
+        <span className="mt-2 font-Pretendard text-xs font-bold sm:mt-3 sm:text-sm md:mt-4 md:text-base lg:mt-6 lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10 2xl:text-2xl">
+          [2023 한강노들섬 클래식] 발레 백조의 호수
+        </span>
+        <div className="mt-6 flex flex-col space-y-6 sm:mt-8 sm:space-y-8 md:mt-10 md:space-y-10 lg:mt-12 lg:space-y-12 xl:mt-14 xl:space-y-14 2xl:mt-16 2xl:space-y-16">
+          {/* 장소 */}
           <div className="flex items-center">
-            <div className="flex mr-2 justify-center items-center text-center w-24 h-11 font-LexendDeca text-xl rounded-2xl font-bold bg-[#7EB2FF]">
-              공연
-            </div>
-            <span className="flex text-lg text-center font-LexendDeca font-bold text-[#06439F]">
-              뮤지컬
+            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              장소
+            </span>
+            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+              한강 노들섬 잔디마당
             </span>
           </div>
-          {/* 제목 */}
-          <span className="font-LexendDeca text-3xl font-bold mt-10">
-            [2023 한강노들섬 클래식] 발레 백조의 호수
-          </span>
-          <div className="flex flex-col space-y-16 mt-16">
-            {/* 장소 */}
-            <div className="flex items-center">
-              <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
-                장소
-              </span>
-              <span className="text-[#585858] font-LexendDeca text-2xl font-medium">
-                한강 노들섬 잔디마당
-              </span>
-            </div>
-            {/* 기간 */}
-            <div className="flex items-center">
-              <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
-                기간
-              </span>
-              <span className="text-[#585858] font-LexendDeca text-2xl font-medium">
-                2023-10-14 ~ 2023-10-15
-              </span>
-            </div>
-            {/* 시간 */}
-            <div className="flex items-center">
-              <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
-                시간
-              </span>
-              <span className="text-[#585858] font-LexendDeca text-2xl font-medium">
-                18:00(90분 인터미션 없음)
-              </span>
-            </div>
-            {/* 대상 */}
-            <div className="flex items-center">
-              <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
-                대상
-              </span>
-              <span className="text-[#585858] font-LexendDeca text-2xl font-medium">
-                7세 이상 관람가
-              </span>
-            </div>
-            {/* 요금 */}
-            <div className="flex items-center">
-              <span className="text-[#06439F] font-LexendDeca text-2xl font-bold mx-5">
-                요금
-              </span>
-              <span className="text-[#585858] font-LexendDeca text-2xl font-medium">
-                무료
-              </span>
-            </div>
+          {/* 기간 */}
+          <div className="flex items-center">
+            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              기간
+            </span>
+            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+              2023-10-14 ~ 2023-10-15
+            </span>
           </div>
-          {/* 홈페이지 바로가기 */}
-          <button
-            type="button"
-            className="flex justify-center items-center mt-16 w-48 h-16 bg-[#252525] rounded-lg border-2 border-solid border-[#FFF] text-white font-LexendDeca text-center text-lg font-medium"
-          >
-            홈페이지 바로가기
-          </button>
+          {/* 시간 */}
+          <div className="flex items-center">
+            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              시간
+            </span>
+            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+              18:00(90분 인터미션 없음)
+            </span>
+          </div>
+          {/* 대상 */}
+          <div className="flex items-center">
+            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              대상
+            </span>
+            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+              7세 이상 관람가
+            </span>
+          </div>
+          {/* 요금 */}
+          <div className="flex items-center">
+            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              요금
+            </span>
+            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
+              무료
+            </span>
+          </div>
         </div>
+        {/* 홈페이지 바로가기 */}
+        <button
+          type="button"
+          className="lg:h-13 mt-6 flex h-7 w-24 items-center justify-center rounded-lg border-2 border-solid border-[#FFF] bg-[#252525] text-center font-Pretendard text-[10px] font-medium text-white sm:mt-8 sm:h-10 sm:w-32 sm:text-xs md:mt-10 md:h-12 md:w-36 lg:mt-12 lg:w-40 lg:text-sm xl:mt-14 xl:h-14 xl:w-44 xl:text-base 2xl:mt-16 2xl:h-16 2xl:w-48 2xl:text-lg"
+        >
+          홈페이지 바로가기
+        </button>
       </div>
     </div>
   );
