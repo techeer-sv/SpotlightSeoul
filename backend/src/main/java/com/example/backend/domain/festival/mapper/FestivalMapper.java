@@ -27,6 +27,7 @@ public class FestivalMapper {
             .lot(row.getLot())
             .place(row.getPlace())
             .title(row.getTitle())
+            .isFree(row.getIsFree())
             .build();
     }
 
