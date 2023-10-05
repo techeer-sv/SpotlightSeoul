@@ -10,7 +10,8 @@ public class FestivalRow {
 
     private String codeName;
     private String orgName;
-    private String themeCode;
+    private String useTrgt;
+    private String date;
     private String endDate;
     private String strtDate;
     private String orgLink;
@@ -23,7 +24,8 @@ public class FestivalRow {
     public FestivalRow(
             @JsonProperty("CODENAME") String codeName,
             @JsonProperty("ORG_NAME") String orgName,
-            @JsonProperty("THEMECODE") String themeCode,
+            @JsonProperty("USE_TRGT") String useTrgt,
+            @JsonProperty("DATE") String date,
             @JsonProperty("END_DATE") String endDate,
             @JsonProperty("STRTDATE") String strtDate,
             @JsonProperty("ORG_LINK") String orgLink,
@@ -34,7 +36,8 @@ public class FestivalRow {
             @JsonProperty("TITLE") String title) {
         this.codeName = codeName;
         this.orgName = orgName;
-        this.themeCode = themeCode;
+        this.useTrgt = useTrgt;
+        this.date = date;
         this.endDate = endDate;
         this.strtDate = strtDate;
         this.orgLink = orgLink;
