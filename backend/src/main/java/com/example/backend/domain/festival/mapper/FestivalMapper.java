@@ -37,9 +37,9 @@ public class FestivalMapper {
             .place(festival.getPlace())
             .title(festival.getTitle())
             .codename(festival.getCodeName())
-            .date(festival.getdate())
+            .date(festival.getDate())
             .mainImg(festival.getMainImg())
-            .useTrgt(festival.getuseTrgt())
+            .useTrgt(festival.getUseTrgt())
             .orgLink(festival.getOrgLink())
             .build();
     }
