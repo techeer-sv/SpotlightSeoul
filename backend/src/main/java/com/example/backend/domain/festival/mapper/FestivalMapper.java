@@ -30,8 +30,11 @@ public class FestivalMapper {
             .lot(festival.getLot())
             .place(festival.getPlace())
             .title(festival.getTitle())
-            .endDate(festival.getEndDate())
-            .strtDate(festival.getStrtDate())
+            .codename(festival.getCodeName())
+            .date(festival.getdate())
+            .mainImg(festival.getMainImg())
+            .useTrgt(festival.getuseTrgt())
+            .orgLink(festival.getOrgLink())
             .build();
     }
 
