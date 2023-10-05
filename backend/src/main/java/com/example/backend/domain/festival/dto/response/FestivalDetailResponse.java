@@ -19,4 +19,5 @@ public class FestivalDetailResponse {
 	private String mainImg;
 	private String useTrgt;
 	private String orgLink;
+	private String isFree;
 }

@@ -42,6 +42,7 @@ public class FestivalMapper {
             .mainImg(festival.getMainImg())
             .useTrgt(festival.getUseTrgt())
             .orgLink(festival.getOrgLink())
+            .isFree(festival.getIsFree())
             .build();
     }
 
