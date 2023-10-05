@@ -32,6 +32,7 @@ public class FestivalService {
 
     public List<FestivalSearchResponse> searchFestival(String keyword) {
         List<Festival> festivals = festivalRepository.findByTitleContaining(keyword);
+        //FIXME mapper로 분리하기
         return festivals.stream()
             .map(festivalMapper::toSearchResponse)
             .collect(Collectors.toList());
