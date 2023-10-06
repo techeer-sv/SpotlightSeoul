@@ -10,7 +10,13 @@ const loadScript = (src: string, callback: () => void) => {
   document.head.appendChild(script);
 };
 
-function MapInformation({ lat, lot }: { lat: number; lot: number }) {
+function MapInformation({
+  latitude,
+  longitude,
+}: {
+  latitude: number;
+  longitude: number;
+}) {
   const initMap = () => {
     // 추가 옵션 설정
     const mapOptions = {
