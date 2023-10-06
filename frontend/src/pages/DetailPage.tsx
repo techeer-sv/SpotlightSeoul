@@ -4,8 +4,6 @@ import MapInformation from '../components/MapInformation';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
 type FestivalData = {
   main_img: string;
   code_name: string;
@@ -36,9 +34,12 @@ function DetailPage({ id }: { id: number }) {
   // 공연 대표이미지 및 세부정보 API
   const FestivalDetailInformation = async () => {
     try {
-      const response = await axios.get<FestivalData>(`${apiUrl}{festival-id}`, {
-        params: { id: id },
-      });
+      const response = await axios.get<FestivalData>(
+        `http://localhost:8080/api/v1/festivals/${id}`,
+        {
+          params: { id: id },
+        },
+      );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
       setCodeName(FestivalData.code_name);
