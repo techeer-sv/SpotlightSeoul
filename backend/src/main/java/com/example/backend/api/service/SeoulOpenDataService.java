@@ -20,9 +20,9 @@ public class SeoulOpenDataService {
 
     @Transactional
     public void fetchFestivalData() {
-        FestivalAPIResponse healthChechResponse =
+        FestivalAPIResponse healthCheckResponse =
             seoulOpenDataFestivalFetchAPI.fetchAPI(FestivalAPIRequest.healthCheckRequest());
-        int totalCount = healthChechResponse.getCulturalEventInfo().getListTotalCount();
+        int totalCount = healthCheckResponse.getCulturalEventInfo().getListTotalCount();
         for (int i = 1; i < totalCount; i += 999) {
             FestivalAPIResponse festivalAPIResponse =
                 seoulOpenDataFestivalFetchAPI.fetchAPI(

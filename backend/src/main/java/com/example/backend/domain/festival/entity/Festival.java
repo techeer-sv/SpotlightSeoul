@@ -19,7 +19,8 @@ public class Festival {
     private Long id;
     private String codeName;
     private String orgName;
-    private String themeCode;
+    private String useTrgt;  // 이용대상
+    private String date; // 날짜/시간
     private String endDate;
     private String strtDate;
     @Column(columnDefinition = "LONGTEXT")
@@ -31,11 +32,12 @@ public class Festival {
     private String title;
 
     @Builder
-    public Festival(String codeName, String orgName, String themeCode, String endDate,
+    public Festival(String codeName, String orgName, String useTrgt, String date, String endDate,
         String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title) {
         this.codeName = codeName;
         this.orgName = orgName;
-        this.themeCode = themeCode;
+        this.useTrgt = useTrgt;
+        this.date = date;
         this.endDate = endDate;
         this.strtDate = strtDate;
         this.orgLink = orgLink;
