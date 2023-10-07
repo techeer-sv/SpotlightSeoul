@@ -11,22 +11,20 @@ type FestivalData = {
   lot: number;
   place: string;
   title: string;
-  end_date: string;
-  strt_date: string;
-  target_user: string;
+  date: string;
+  use_trgt: string;
   price: string;
   org_link: string;
 };
 
-function DetailPage({ id }: { id: number }) {
+function DetailPage() {
   const [mainImg, setMainImg] = useState<string>('');
   const [codeName, setCodeName] = useState<string>('');
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
   const [place, setPlace] = useState<string>('');
   const [title, setTitle] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
-  const [startDate, setStartDate] = useState<string>('');
+  const [date, setDate] = useState<string>('');
   const [targetUser, setTargetUser] = useState<string>('');
   const [price, setPrice] = useState<string>('');
   const [orgLink, setOrgLink] = useState<string>('');
@@ -35,10 +33,7 @@ function DetailPage({ id }: { id: number }) {
   const FestivalDetailInformation = async () => {
     try {
       const response = await axios.get<FestivalData>(
-        `http://localhost:8080/api/v1/festivals/${id}`,
-        {
-          params: { id: id },
-        },
+        'http://localhost:8080/api/v1/festivals/festivals/2',
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
@@ -47,9 +42,8 @@ function DetailPage({ id }: { id: number }) {
       setLongitude(FestivalData.lot);
       setPlace(FestivalData.place);
       setTitle(FestivalData.title);
-      setEndDate(FestivalData.end_date);
-      setStartDate(FestivalData.strt_date);
-      setTargetUser(FestivalData.target_user);
+      setDate(FestivalData.date);
+      setTargetUser(FestivalData.use_trgt);
       setPrice(FestivalData.price);
       setOrgLink(FestivalData.org_link);
     } catch (error) {
@@ -59,7 +53,7 @@ function DetailPage({ id }: { id: number }) {
 
   useEffect(() => {
     FestivalDetailInformation();
-  }, [id]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
@@ -73,14 +67,13 @@ function DetailPage({ id }: { id: number }) {
           codeName={codeName}
           place={place}
           title={title}
-          endDate={endDate}
-          startDate={startDate}
+          date={date}
           targetUser={targetUser}
           price={price}
           orgLink={orgLink}
         />
         {/* 위치정보 (지도) */}
-        <MapInformation latitude={latitude} longitude={longitude} />
+        <MapInformation latitude={longitude} longitude={latitude} />
       </div>
     </div>
   );

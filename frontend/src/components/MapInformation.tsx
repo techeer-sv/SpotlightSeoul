@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 let mapInstance: naver.maps.Map | null = null;
 
@@ -17,6 +17,9 @@ function MapInformation({
   latitude: number;
   longitude: number;
 }) {
+  // 지도 로딩 상태
+  const [isMapLoaded, setMapLoaded] = useState(false);
+
   const initMap = () => {
     // 추가 옵션 설정
     const mapOptions = {
@@ -25,26 +28,29 @@ function MapInformation({
         style: naver.maps.ZoomControlStyle.SMALL,
         position: naver.maps.Position.TOP_RIGHT,
       },
-      center: new naver.maps.LatLng(lat, lot),
+      center: new naver.maps.LatLng(latitude, longitude),
       zoom: 16,
     };
 
     // 지도 초기화 확인
-    if (!mapInstance) {
+    if (document.getElementById('map')) {
       mapInstance = new naver.maps.Map('map', mapOptions);
     }
 
     // Marker 생성
     const marker = new naver.maps.Marker({
-      position: new naver.maps.LatLng(lat, lot),
+      position: new naver.maps.LatLng(latitude, longitude),
       map: mapInstance,
     });
 
     // Marker 클릭 시 지도 초기화
     naver.maps.Event.addListener(marker, 'click', () => {
-      mapInstance?.setCenter(new naver.maps.LatLng(lat, lot));
+      mapInstance?.setCenter(new naver.maps.LatLng(latitude, longitude));
       mapInstance?.setZoom(16);
     });
+
+    // 지도 로드 완료
+    setMapLoaded(true);
   };
 
   useEffect(() => {
@@ -57,7 +63,7 @@ function MapInformation({
     } else {
       initMap();
     }
-  }, []);
+  }, [latitude, longitude]);
 
   return (
     <>
@@ -66,7 +72,9 @@ function MapInformation({
         <span className="sm:text-md font-LexendDeca text-sm font-bold text-[#06439F] md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
           위치 안내
         </span>
-        <div id="map" className="mt-4 h-[500px] w-11/12 sm:mt-6 lg:mt-8" />
+        {isMapLoaded && (
+          <div id="map" className="mt-4 h-[500px] w-11/12 sm:mt-6 lg:mt-8" />
+        )}
       </div>
     </>
   );
