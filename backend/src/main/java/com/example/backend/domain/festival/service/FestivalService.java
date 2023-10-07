@@ -1,7 +1,6 @@
 package com.example.backend.domain.festival.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
@@ -35,10 +34,7 @@ public class FestivalService {
 
     public List<FestivalSearchResponse> searchFestival(String keyword) {
         List<Festival> festivals = festivalRepository.findByTitleContaining(keyword);
-        //FIXME mapper로 분리하기
-        return festivals.stream()
-            .map(festivalMapper::toSearchResponse)
-            .collect(Collectors.toList());
+        return festivalMapper.toSearchResponseList(festivals);
     }
 
     public FestivalPageResponse getFestivalByPagination(final int offset, final int size) {

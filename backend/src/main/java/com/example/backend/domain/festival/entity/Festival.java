@@ -30,10 +30,11 @@ public class Festival {
     private Double lot; //위도
     private String place;
     private String title;
+    private String isFree;
 
     @Builder
     public Festival(String codeName, String orgName, String useTrgt, String date, String endDate,
-        String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title) {
+        String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
         this.codeName = codeName;
         this.orgName = orgName;
         this.useTrgt = useTrgt;
@@ -46,5 +47,6 @@ public class Festival {
         this.lot = lot;
         this.place = place;
         this.title = title;
+        this.isFree = isFree;
     }
 }

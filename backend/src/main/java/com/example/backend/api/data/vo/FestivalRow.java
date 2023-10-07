@@ -20,6 +20,7 @@ public class FestivalRow {
     private Double lot; //위도
     private String place;
     private String title;
+    private String isFree;
 
     public FestivalRow(
             @JsonProperty("CODENAME") String codeName,
@@ -33,7 +34,8 @@ public class FestivalRow {
             @JsonProperty("LAT") Double lat,
             @JsonProperty("LOT") Double lot,
             @JsonProperty("PLACE") String place,
-            @JsonProperty("TITLE") String title) {
+            @JsonProperty("TITLE") String title,
+            @JsonProperty("IS_FREE") String isFree){
         this.codeName = codeName;
         this.orgName = orgName;
         this.useTrgt = useTrgt;
@@ -46,5 +48,6 @@ public class FestivalRow {
         this.lot = lot;
         this.place = place;
         this.title = title;
+        this.isFree = isFree;
     }
 }

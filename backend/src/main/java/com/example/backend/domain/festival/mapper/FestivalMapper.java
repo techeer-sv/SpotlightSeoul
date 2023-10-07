@@ -7,6 +7,8 @@ import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +29,7 @@ public class FestivalMapper {
             .lot(row.getLot())
             .place(row.getPlace())
             .title(row.getTitle())
+            .isFree(row.getIsFree())
             .build();
     }
 
@@ -37,10 +40,11 @@ public class FestivalMapper {
             .place(festival.getPlace())
             .title(festival.getTitle())
             .codename(festival.getCodeName())
-            .date(festival.getdate())
+            .date(festival.getDate())
             .mainImg(festival.getMainImg())
-            .useTrgt(festival.getuseTrgt())
+            .useTrgt(festival.getUseTrgt())
             .orgLink(festival.getOrgLink())
+            .isFree(festival.getIsFree())
             .build();
     }
 
@@ -50,6 +54,12 @@ public class FestivalMapper {
             .title(festival.getTitle())
             .mainImg(festival.getMainImg())
             .build();
+    }
+
+    public List<FestivalSearchResponse> toSearchResponseList(List<Festival> festivals){
+        return festivals.stream()
+            .map(this::toSearchResponse)
+            .collect(Collectors.toList());
     }
 
     public FestivalResponse toResponse(Festival festival) {

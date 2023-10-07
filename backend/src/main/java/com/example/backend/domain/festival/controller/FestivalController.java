@@ -33,13 +33,13 @@ public class FestivalController {
         return ResponseEntity.ok(response);
     }
   
-  	@GetMapping("/festivals/{id}")
+  	@GetMapping("/{id}")
 	public ResponseEntity<FestivalDetailResponse> getFestivalDetail(@PathVariable Long id) {
 		FestivalDetailResponse response = festivalService.findDetailFestival(id);
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/festivals")
+	@GetMapping
 	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword){
 		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword);
 		return ResponseEntity.ok(searchResults);
