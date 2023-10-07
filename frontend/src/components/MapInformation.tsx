@@ -69,7 +69,7 @@ function MapInformation({
     <>
       {/* 위치 정보(지도) */}
       <div className="mb-8 mt-40 flex w-screen flex-col items-center">
-        <span className="sm:text-md font-LexendDeca text-sm font-bold text-[#06439F] md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+        <span className="sm:text-md font-Pretendard text-sm font-bold text-[#06439F] md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
           위치 안내
         </span>
         {isMapLoaded && (

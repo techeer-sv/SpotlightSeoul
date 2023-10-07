@@ -73,7 +73,7 @@ function DetailPage() {
           orgLink={orgLink}
         />
         {/* 위치정보 (지도) */}
-        <MapInformation latitude={longitude} longitude={latitude} />
+        <MapInformation latitude={latitude} longitude={longitude} />
       </div>
     </div>
   );
