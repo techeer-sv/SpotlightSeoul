@@ -6,14 +6,14 @@ import axios from 'axios';
 
 type FestivalData = {
   main_img: string;
-  code_name: string;
+  codename: string;
   lat: number;
   lot: number;
   place: string;
   title: string;
   date: string;
   use_trgt: string;
-  price: string;
+  is_free: string;
   org_link: string;
 };
 
@@ -26,25 +26,25 @@ function DetailPage() {
   const [title, setTitle] = useState<string>('');
   const [date, setDate] = useState<string>('');
   const [targetUser, setTargetUser] = useState<string>('');
-  const [price, setPrice] = useState<string>('');
+  const [isFree, setIsFree] = useState<string>('');
   const [orgLink, setOrgLink] = useState<string>('');
 
   // 공연 대표이미지 및 세부정보 API
   const FestivalDetailInformation = async () => {
     try {
       const response = await axios.get<FestivalData>(
-        'http://localhost:8080/api/v1/festivals/festivals/2',
+        'http://localhost:8080/api/v1/festivals/3',
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
-      setCodeName(FestivalData.code_name);
+      setCodeName(FestivalData.codename);
       setLatitude(FestivalData.lat);
       setLongitude(FestivalData.lot);
       setPlace(FestivalData.place);
       setTitle(FestivalData.title);
       setDate(FestivalData.date);
       setTargetUser(FestivalData.use_trgt);
-      setPrice(FestivalData.price);
+      setIsFree(FestivalData.is_free);
       setOrgLink(FestivalData.org_link);
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ function DetailPage() {
           title={title}
           date={date}
           targetUser={targetUser}
-          price={price}
+          isFree={isFree}
           orgLink={orgLink}
         />
         {/* 위치정보 (지도) */}
