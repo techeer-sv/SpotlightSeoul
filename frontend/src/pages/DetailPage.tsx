@@ -6,7 +6,7 @@ import axios from 'axios';
 
 type FestivalData = {
   main_img: string;
-  code_name: string;
+  codename: string;
   lat: number;
   lot: number;
   place: string;
@@ -37,7 +37,7 @@ function DetailPage() {
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
-      setCodeName(FestivalData.code_name);
+      setCodeName(FestivalData.codename);
       setLatitude(FestivalData.lat);
       setLongitude(FestivalData.lot);
       setPlace(FestivalData.place);
