@@ -5,7 +5,7 @@ function FestivalInformation({
   title,
   date,
   targetUser,
-  price,
+  isFree,
   orgLink,
 }: {
   mainImg: string;
@@ -14,7 +14,7 @@ function FestivalInformation({
   title: string;
   date: string;
   targetUser: string;
-  price: string;
+  isFree: string;
   orgLink: string;
 }) {
   return (
@@ -83,7 +83,7 @@ function FestivalInformation({
               요금
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              {price}
+              {isFree}
             </span>
           </div>
         </div>
