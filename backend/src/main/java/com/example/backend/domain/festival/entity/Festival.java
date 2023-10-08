@@ -17,7 +17,8 @@ public class Festival {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String codeName;
+    private String majorCodeName;
+    private String subCodeName;
     private String orgName;
     private String useTrgt;  // 이용대상
     private String date; // 날짜/시간
@@ -33,9 +34,10 @@ public class Festival {
     private String isFree;
 
     @Builder
-    public Festival(String codeName, String orgName, String useTrgt, String date, String endDate,
+    public Festival(String majorCodenName, String subCodeName, String orgName, String useTrgt, String date, String endDate,
         String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
-        this.codeName = codeName;
+        this.majorCodeName = majorCodenName;
+        this.subCodeName = subCodeName;
         this.orgName = orgName;
         this.useTrgt = useTrgt;
         this.date = date;
