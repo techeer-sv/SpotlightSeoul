@@ -3,8 +3,7 @@ function FestivalInformation({
   codeName,
   place,
   title,
-  endDate,
-  startDate,
+  date,
   targetUser,
   price,
   orgLink,
@@ -13,8 +12,7 @@ function FestivalInformation({
   codeName: string;
   place: string;
   title: string;
-  endDate: string;
-  startDate: string;
+  date: string;
   targetUser: string;
   price: string;
   orgLink: string;
@@ -58,7 +56,7 @@ function FestivalInformation({
               기간
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              `${startDate} ~ ${endDate}`
+              {date}
             </span>
           </div>
           {/* 시간 */}
