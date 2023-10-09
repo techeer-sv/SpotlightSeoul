@@ -14,7 +14,8 @@ public class FestivalDetailResponse {
 	private Double lot; //위도
 	private String place;
 	private String title;
-	private String codename;
+	private String majorCodeName;
+	private String subCodeName;
 	private String date;
 	private String mainImg;
 	private String useTrgt;
