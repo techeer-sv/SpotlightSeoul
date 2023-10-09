@@ -6,6 +6,7 @@ import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
 import com.example.backend.domain.festival.entity.Festival;
+import com.example.backend.domain.festival.utils.EventCategoryUtil;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,8 @@ public class FestivalMapper {
 
     public Festival toEntity(FestivalRow row) {
         return Festival.builder()
-            .codeName(row.getCodeName())
+            .majorCodenName(EventCategoryUtil.getCategory(row.getCodeName()))
+            .subCodeName(row.getCodeName())
             .orgName(row.getOrgName())
             .useTrgt(row.getUseTrgt())
             .date(row.getDate())
@@ -39,7 +41,7 @@ public class FestivalMapper {
             .lot(festival.getLot())
             .place(festival.getPlace())
             .title(festival.getTitle())
-            .codename(festival.getCodeName())
+            .codename(festival.getSubCodeName())
             .date(festival.getDate())
             .mainImg(festival.getMainImg())
             .useTrgt(festival.getUseTrgt())
