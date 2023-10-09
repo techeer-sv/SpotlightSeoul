@@ -1,10 +1,10 @@
 function Filter() {
   return (
     <div className=" flex justify-center items-center">
-      <div className="items-center justify-center mt-16 w-9/12 font-LexendDeca bg-zinc-100 py-2 px-1">
+      <div className="items-center justify-center mt-16 w-9/12 font-Pretendard bg-zinc-100 py-2 px-1">
         {/* 지역 */}
         <select
-          className="font-LexendDeca justify-center items-center mx-3 my-3 h-8"
+          className="font-Pretendard justify-center items-center mx-2 my-3 h-8"
           id="지역"
         >
           <option value="지역">지역</option>
@@ -24,7 +24,7 @@ function Filter() {
         </select>
 
         {/* 분야 */}
-        <select className="h-8 mx-2 my-3" id="분야">
+        <select className="h-8 mx-1 my-3" id="분야">
           <option value="분야">분야</option>
           <option value="공연">공연</option>
           <option value="전시">전시</option>
@@ -34,7 +34,7 @@ function Filter() {
         </select>
 
         {/* 세부분야 */}
-        <select className="h-8 mx-2 my-3" id="세부분야">
+        <select className="h-8 my-3" id="세부분야">
           <option value="세부분야">세부분야</option>
           <option value="콘서트">콘서트</option>
           <option value="클래식">클래식</option>
@@ -68,13 +68,13 @@ function Filter() {
         />
         <button
           type="button"
-          className="bg-[#06439F] px-4 py-[5px] font-LexendDeca text-white rounded-[4px] mx-2 my-3"
+          className="bg-[#06439F] px-3 py-[5px] font-LexendDeca text-white rounded-[4px] mx-0 my-3"
         >
           검색
         </button>
         <button
           type="button"
-          className="bg-[#5f5f5f] px-3 py-[5px] font-LexendDeca text-white rounded-[4px] mx-2 my-3"
+          className="bg-[#5f5f5f] px-2 py-[5px] font-LexendDeca text-white rounded-[4px] mx-2 my-3"
         >
           초기화
         </button>

@@ -1,13 +1,29 @@
-import SampleImage1 from '../assets/images/jpg/SampleImage1.jpeg';
-
-function FestivalInformation() {
+function FestivalInformation({
+  mainImg,
+  codeName,
+  place,
+  title,
+  date,
+  targetUser,
+  isFree,
+  orgLink,
+}: {
+  mainImg: string;
+  codeName: string;
+  place: string;
+  title: string;
+  date: string;
+  targetUser: string;
+  isFree: string;
+  orgLink: string;
+}) {
   return (
     <div className="mx-0 mt-14 flex h-auto w-11/12 max-w-[1400px] items-start justify-between">
       {/* 대표이미지 */}
       <img
-        src={SampleImage1}
-        alt="SampleImage1"
         className="flex h-auto w-5/12 rounded-md bg-no-repeat shadow-lg shadow-slate-500"
+        src={mainImg}
+        alt="FestivalImage"
       />
       {/* 공연 세부정보 */}
       <div className="flex w-6/12 flex-shrink flex-col items-start">
@@ -17,12 +33,12 @@ function FestivalInformation() {
             공연
           </div>
           <span className="flex text-center font-Pretendard text-[10px] font-bold text-[#06439F] sm:text-xs lg:text-sm xl:text-base 2xl:text-lg">
-            뮤지컬
+            {codeName}
           </span>
         </div>
         {/* 제목 */}
         <span className="mt-2 font-Pretendard text-xs font-bold sm:mt-3 sm:text-sm md:mt-4 md:text-base lg:mt-6 lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10 2xl:text-2xl">
-          [2023 한강노들섬 클래식] 발레 백조의 호수
+          {title}
         </span>
         <div className="mt-6 flex flex-col space-y-6 sm:mt-8 sm:space-y-8 md:mt-10 md:space-y-10 lg:mt-12 lg:space-y-12 xl:mt-14 xl:space-y-14 2xl:mt-16 2xl:space-y-16">
           {/* 장소 */}
@@ -31,7 +47,7 @@ function FestivalInformation() {
               장소
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              한강 노들섬 잔디마당
+              {place}
             </span>
           </div>
           {/* 기간 */}
@@ -40,7 +56,7 @@ function FestivalInformation() {
               기간
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              2023-10-14 ~ 2023-10-15
+              {date}
             </span>
           </div>
           {/* 시간 */}
@@ -58,7 +74,7 @@ function FestivalInformation() {
               대상
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              7세 이상 관람가
+              {targetUser}
             </span>
           </div>
           {/* 요금 */}
@@ -67,14 +83,15 @@ function FestivalInformation() {
               요금
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              무료
+              {isFree}
             </span>
           </div>
         </div>
         {/* 홈페이지 바로가기 */}
         <button
-          type="button"
           className="lg:h-13 mt-6 flex h-7 w-24 items-center justify-center rounded-lg border-2 border-solid border-[#FFF] bg-[#252525] text-center font-Pretendard text-[10px] font-medium text-white sm:mt-8 sm:h-10 sm:w-32 sm:text-xs md:mt-10 md:h-12 md:w-36 lg:mt-12 lg:w-40 lg:text-sm xl:mt-14 xl:h-14 xl:w-44 xl:text-base 2xl:mt-16 2xl:h-16 2xl:w-48 2xl:text-lg"
+          type="button"
+          onClick={() => window.open(orgLink, '_blank')}
         >
           홈페이지 바로가기
         </button>

@@ -1,6 +1,6 @@
 package com.example.backend.api.data.dto.response;
 
-import com.example.backend.api.data.vo.FeativalData;
+import com.example.backend.api.data.vo.FestivalData;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -10,10 +10,10 @@ import lombok.ToString;
 @ToString
 public class FestivalAPIResponse {
 
-    private final FeativalData culturalEventInfo;
+    private final FestivalData culturalEventInfo;
 
     @JsonCreator
-    public FestivalAPIResponse(@JsonProperty("culturalEventInfo") FeativalData culturalEventInfo) {
+    public FestivalAPIResponse(@JsonProperty("culturalEventInfo") FestivalData culturalEventInfo) {
         this.culturalEventInfo = culturalEventInfo;
     }
 }

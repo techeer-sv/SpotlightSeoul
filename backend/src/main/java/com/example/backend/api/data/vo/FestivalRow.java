@@ -10,7 +10,8 @@ public class FestivalRow {
 
     private String codeName;
     private String orgName;
-    private String themeCode;
+    private String useTrgt;
+    private String date;
     private String endDate;
     private String strtDate;
     private String orgLink;
@@ -19,11 +20,13 @@ public class FestivalRow {
     private Double lot; //위도
     private String place;
     private String title;
+    private String isFree;
 
     public FestivalRow(
             @JsonProperty("CODENAME") String codeName,
             @JsonProperty("ORG_NAME") String orgName,
-            @JsonProperty("THEMECODE") String themeCode,
+            @JsonProperty("USE_TRGT") String useTrgt,
+            @JsonProperty("DATE") String date,
             @JsonProperty("END_DATE") String endDate,
             @JsonProperty("STRTDATE") String strtDate,
             @JsonProperty("ORG_LINK") String orgLink,
@@ -31,10 +34,12 @@ public class FestivalRow {
             @JsonProperty("LAT") Double lat,
             @JsonProperty("LOT") Double lot,
             @JsonProperty("PLACE") String place,
-            @JsonProperty("TITLE") String title) {
+            @JsonProperty("TITLE") String title,
+            @JsonProperty("IS_FREE") String isFree){
         this.codeName = codeName;
         this.orgName = orgName;
-        this.themeCode = themeCode;
+        this.useTrgt = useTrgt;
+        this.date = date;
         this.endDate = endDate;
         this.strtDate = strtDate;
         this.orgLink = orgLink;
@@ -43,5 +48,6 @@ public class FestivalRow {
         this.lot = lot;
         this.place = place;
         this.title = title;
+        this.isFree = isFree;
     }
 }

@@ -17,9 +17,11 @@ public class Festival {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String codeName;
+    private String majorCodeName;
+    private String subCodeName;
     private String orgName;
-    private String themeCode;
+    private String useTrgt;  // 이용대상
+    private String date; // 날짜/시간
     private String endDate;
     private String strtDate;
     @Column(columnDefinition = "LONGTEXT")
@@ -29,13 +31,16 @@ public class Festival {
     private Double lot; //위도
     private String place;
     private String title;
+    private String isFree;
 
     @Builder
-    public Festival(String codeName, String orgName, String themeCode, String endDate,
-        String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title) {
-        this.codeName = codeName;
+    public Festival(String majorCodenName, String subCodeName, String orgName, String useTrgt, String date, String endDate,
+        String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
+        this.majorCodeName = majorCodenName;
+        this.subCodeName = subCodeName;
         this.orgName = orgName;
-        this.themeCode = themeCode;
+        this.useTrgt = useTrgt;
+        this.date = date;
         this.endDate = endDate;
         this.strtDate = strtDate;
         this.orgLink = orgLink;
@@ -44,5 +49,6 @@ public class Festival {
         this.lot = lot;
         this.place = place;
         this.title = title;
+        this.isFree = isFree;
     }
 }
