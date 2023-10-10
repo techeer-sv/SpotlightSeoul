@@ -61,15 +61,6 @@ function FestivalInformation({
               {date}
             </span>
           </div>
-          {/* 시간 */}
-          <div className="flex items-center">
-            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-              시간
-            </span>
-            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              18:00(90분 인터미션 없음)
-            </span>
-          </div>
           {/* 대상 */}
           <div className="flex items-center">
             <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
