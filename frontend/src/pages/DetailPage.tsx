@@ -35,7 +35,7 @@ function DetailPage() {
   const FestivalDetailInformation = async () => {
     try {
       const response = await axios.get<FestivalData>(
-        'http://localhost:8080/api/v1/festivals/8',
+        'http://localhost:8080/api/v1/festivals/443',
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
