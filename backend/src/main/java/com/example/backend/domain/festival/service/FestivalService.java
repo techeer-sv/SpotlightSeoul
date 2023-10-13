@@ -35,7 +35,7 @@ public class FestivalService {
     }
 
     public List<FestivalSearchResponse> searchFestival(String keyword) {
-        List<Festival> festivals = festivalRepository.findByTitleContaining(keyword);
+        List<Festival> festivals = festivalRepository.findByTitleKeyword(keyword);
         return festivalMapper.toSearchResponseList(festivals);
     }
 

@@ -27,7 +27,6 @@ import lombok.experimental.FieldDefaults;
 public class FestivalController {
 
     FestivalService festivalService;
-	FestivalRepository festivalRepository;
 
     @GetMapping("/page")
     public ResponseEntity<FestivalPageResponse> getPostByPagination(

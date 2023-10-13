@@ -5,11 +5,10 @@ import static org.springframework.util.StringUtils.*;
 
 import java.util.List;
 
-import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
-import com.example.backend.domain.festival.dto.response.QFestivalFilterResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jakarta.persistence.EntityManager;
@@ -19,6 +18,17 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	public FestivalRepositoryImpl(EntityManager em) {
 		this.queryFactory = new JPAQueryFactory(em);
 	}
+
+	@Override
+		public List<Festival> findByTitleKeyword(String keyword){
+			return queryFactory.selectFrom(festival)
+				.where(
+					festival.title.contains(keyword)
+						.or(Expressions.stringTemplate("function('replace',{0},{1},{2})",festival.title," ","").contains(keyword)
+						)
+				)
+				.fetch();
+		}
 
 	@Override
 	public List<Festival> filter(FestivalFilterSearchResponse response){

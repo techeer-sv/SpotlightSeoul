@@ -8,4 +8,6 @@ import com.example.backend.domain.festival.entity.Festival;
 
 public interface FestivalRepositoryCustom {
 	List<Festival> filter(FestivalFilterSearchResponse response);
+
+	List<Festival> findByTitleKeyword(String keyword);
 }
