@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
+import com.example.backend.domain.festival.repository.FestivalRepository;
 import com.example.backend.domain.festival.service.FestivalService;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import lombok.AccessLevel;
@@ -24,6 +27,7 @@ import lombok.experimental.FieldDefaults;
 public class FestivalController {
 
     FestivalService festivalService;
+	FestivalRepository festivalRepository;
 
     @GetMapping("/page")
     public ResponseEntity<FestivalPageResponse> getPostByPagination(
@@ -43,6 +47,12 @@ public class FestivalController {
 	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword){
 		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword);
 		return ResponseEntity.ok(searchResults);
+	}
+
+	@GetMapping("/category")
+	public ResponseEntity<List<FestivalFilterResponse>> filterFestivals(FestivalFilterSearchResponse response){
+		List<FestivalFilterResponse> filterResults = festivalService.filterFestivals(response);
+		return ResponseEntity.ok(filterResults);
 	}
 
 }

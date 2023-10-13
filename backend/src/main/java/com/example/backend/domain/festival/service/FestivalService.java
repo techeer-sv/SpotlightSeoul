@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -41,6 +43,11 @@ public class FestivalService {
         PageRequest request = PageRequest.of(offset, size);
         Page<Festival> postByPagenation = festivalRepository.findAll(request);
         return festivalMapper.toPageResponse(postByPagenation);
+    }
+
+    public List<FestivalFilterResponse> filterFestivals(FestivalFilterSearchResponse response){
+        List<Festival> festivals = festivalRepository.filter(response);
+        return festivalMapper.toFilterResponseList(festivals);
     }
 
 }
