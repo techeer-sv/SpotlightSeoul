@@ -6,7 +6,8 @@ import axios from 'axios';
 
 type FestivalData = {
   main_img: string;
-  codename: string;
+  major_code_name: string;
+  sub_code_name: string;
   lat: number;
   lot: number;
   place: string;
@@ -19,7 +20,8 @@ type FestivalData = {
 
 function DetailPage() {
   const [mainImg, setMainImg] = useState<string>('');
-  const [codeName, setCodeName] = useState<string>('');
+  const [majorCodeName, setMajorCodeName] = useState<string>('');
+  const [subCodeName, setSubCodeName] = useState<string>('');
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
   const [place, setPlace] = useState<string>('');
@@ -33,11 +35,12 @@ function DetailPage() {
   const FestivalDetailInformation = async () => {
     try {
       const response = await axios.get<FestivalData>(
-        'http://localhost:8080/api/v1/festivals/3',
+        'http://localhost:8080/api/v1/festivals/443',
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
-      setCodeName(FestivalData.codename);
+      setMajorCodeName(FestivalData.major_code_name);
+      setSubCodeName(FestivalData.sub_code_name);
       setLatitude(FestivalData.lat);
       setLongitude(FestivalData.lot);
       setPlace(FestivalData.place);
@@ -64,7 +67,8 @@ function DetailPage() {
         {/* 대표이미지 및 공연 세부정보 */}
         <FestivalInformation
           mainImg={mainImg}
-          codeName={codeName}
+          majorCodeName={majorCodeName}
+          subCodeName={subCodeName}
           place={place}
           title={title}
           date={date}
@@ -73,7 +77,7 @@ function DetailPage() {
           orgLink={orgLink}
         />
         {/* 위치정보 (지도) */}
-        <MapInformation latitude={latitude} longitude={longitude} />
+        <MapInformation latitude={longitude} longitude={latitude} />
       </div>
     </div>
   );

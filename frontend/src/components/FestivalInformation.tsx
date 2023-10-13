@@ -1,6 +1,7 @@
 function FestivalInformation({
   mainImg,
-  codeName,
+  majorCodeName,
+  subCodeName,
   place,
   title,
   date,
@@ -9,7 +10,8 @@ function FestivalInformation({
   orgLink,
 }: {
   mainImg: string;
-  codeName: string;
+  majorCodeName: string;
+  subCodeName: string;
   place: string;
   title: string;
   date: string;
@@ -30,10 +32,10 @@ function FestivalInformation({
         {/* 공연 분류 */}
         <div className="flex items-center">
           <div className="mr-2 flex h-4 w-10 items-center justify-center rounded-sm bg-[#7EB2FF] text-center font-Pretendard text-[10px] font-bold sm:h-5 sm:w-12 sm:rounded-md sm:text-xs md:h-6 md:rounded-lg lg:h-8 lg:w-16 lg:text-base xl:h-9 xl:w-20 xl:rounded-xl xl:text-lg 2xl:h-11 2xl:w-24 2xl:rounded-2xl 2xl:text-xl">
-            공연
+            {majorCodeName}
           </div>
           <span className="flex text-center font-Pretendard text-[10px] font-bold text-[#06439F] sm:text-xs lg:text-sm xl:text-base 2xl:text-lg">
-            {codeName}
+            {subCodeName}
           </span>
         </div>
         {/* 제목 */}
@@ -57,15 +59,6 @@ function FestivalInformation({
             </span>
             <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
               {date}
-            </span>
-          </div>
-          {/* 시간 */}
-          <div className="flex items-center">
-            <span className="mx-5 font-Pretendard text-xs font-bold text-[#06439F] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-              시간
-            </span>
-            <span className="font-Pretendard text-[10px] font-medium text-[#585858] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl">
-              18:00(90분 인터미션 없음)
             </span>
           </div>
           {/* 대상 */}
