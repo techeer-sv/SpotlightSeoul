@@ -72,7 +72,10 @@ public class FestivalMapper {
             .orgName(festival.getOrgName())
             .mainImg(festival.getMainImg())
             .strtDate(festival.getStrtDate())
+            .endDate(festival.getEndDate())
             .title(festival.getTitle())
+            .majorCodeName(festival.getMajorCodeName())
+            .subCodeName(festival.getSubCodeName())
             .build();
     }
     public FestivalPageResponse toPageResponse(Page<Festival> festivalList, int numPostByPagenation) {
