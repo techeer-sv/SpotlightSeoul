@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FestivalPageResponse {
+    private Integer totalPageNum;
     private List<FestivalResponse> postResponses;
 }

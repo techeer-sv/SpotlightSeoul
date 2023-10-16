@@ -75,10 +75,11 @@ public class FestivalMapper {
             .title(festival.getTitle())
             .build();
     }
-    public FestivalPageResponse toPageResponse(Page<Festival> festivalList) {
+    public FestivalPageResponse toPageResponse(Page<Festival> festivalList, int numPostByPagenation) {
         List<FestivalResponse> festivalResponseList =
             festivalList.stream().map(this::toResponse).toList();
         return FestivalPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
             .postResponses(festivalResponseList)
             .build();
     }
