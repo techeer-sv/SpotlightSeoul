@@ -2,6 +2,10 @@ package com.example.backend.domain.festival.controller;
 
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
+import com.example.backend.domain.festival.repository.FestivalRepository;
 import com.example.backend.domain.festival.service.FestivalService;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import lombok.AccessLevel;
@@ -40,9 +47,16 @@ public class FestivalController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword){
-		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword);
+	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword, @PageableDefault(size = 20)
+		Pageable page){
+		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword, page);
 		return ResponseEntity.ok(searchResults);
+	}
+
+	@GetMapping("/category")
+	public ResponseEntity<List<FestivalFilterResponse>> filterFestivals(FestivalFilterSearchResponse response, @PageableDefault(size = 20) Pageable page){
+		List<FestivalFilterResponse> filterResults = festivalService.filterFestivals(response, page);
+		return ResponseEntity.ok(filterResults);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.example.backend.domain.festival.mapper;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
@@ -60,7 +61,7 @@ public class FestivalMapper {
             .build();
     }
 
-    public List<FestivalSearchResponse> toSearchResponseList(List<Festival> festivals){
+    public List<FestivalSearchResponse> toSearchResponseList(Page<Festival> festivals){
         return festivals.stream()
             .map(this::toSearchResponse)
             .collect(Collectors.toList());
@@ -85,6 +86,24 @@ public class FestivalMapper {
             .totalPageNum(numPostByPagenation)
             .postResponses(festivalResponseList)
             .build();
+    }
+
+    public FestivalFilterResponse toFilterResponse(Festival festival) {
+        return FestivalFilterResponse.builder()
+            .id(festival.getId())
+            .majorCodeName(festival.getMajorCodeName())
+            .subCodeName(festival.getSubCodeName())
+            .endDate(festival.getEndDate())
+            .strtDate(festival.getStrtDate())
+            .place(festival.getPlace())
+            .isFree(festival.getIsFree())
+            .build();
+    }
+
+    public List<FestivalFilterResponse> toFilterResponseList(Page<Festival> festivals){
+        return festivals.stream()
+            .map(this::toFilterResponse)
+            .collect(Collectors.toList());
     }
 
 }
