@@ -27,8 +27,9 @@ public class FestivalMapper {
             .strtDate(row.getStrtDate())
             .orgLink(row.getOrgLink())
             .mainImg(row.getMainImg())
-            .lat(row.getLat())
-            .lot(row.getLot())
+            //FIXME: Open api에서 잘 못 들어오는 데이터에 따라 임의로 값을 변경함
+            .lat(row.getLot())
+            .lot(row.getLat())
             .place(row.getPlace())
             .title(row.getTitle())
             .isFree(row.getIsFree())
@@ -71,13 +72,17 @@ public class FestivalMapper {
             .orgName(festival.getOrgName())
             .mainImg(festival.getMainImg())
             .strtDate(festival.getStrtDate())
+            .endDate(festival.getEndDate())
             .title(festival.getTitle())
+            .majorCodeName(festival.getMajorCodeName())
+            .subCodeName(festival.getSubCodeName())
             .build();
     }
-    public FestivalPageResponse toPageResponse(Page<Festival> festivalList) {
+    public FestivalPageResponse toPageResponse(Page<Festival> festivalList, int numPostByPagenation) {
         List<FestivalResponse> festivalResponseList =
             festivalList.stream().map(this::toResponse).toList();
         return FestivalPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
             .postResponses(festivalResponseList)
             .build();
     }

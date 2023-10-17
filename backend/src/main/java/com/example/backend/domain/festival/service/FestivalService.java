@@ -40,7 +40,8 @@ public class FestivalService {
     public FestivalPageResponse getFestivalByPagination(final int offset, final int size) {
         PageRequest request = PageRequest.of(offset, size);
         Page<Festival> postByPagenation = festivalRepository.findAll(request);
-        return festivalMapper.toPageResponse(postByPagenation);
+        int numPostByPagenation = postByPagenation.getTotalPages();
+        return festivalMapper.toPageResponse(postByPagenation, numPostByPagenation);
     }
 
 }
