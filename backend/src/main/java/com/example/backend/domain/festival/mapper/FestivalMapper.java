@@ -60,7 +60,7 @@ public class FestivalMapper {
             .build();
     }
 
-    public List<FestivalSearchResponse> toSearchResponseList(List<Festival> festivals){
+    public List<FestivalSearchResponse> toSearchResponseList(Page<Festival> festivals){
         return festivals.stream()
             .map(this::toSearchResponse)
             .collect(Collectors.toList());
@@ -95,7 +95,7 @@ public class FestivalMapper {
             .build();
     }
 
-    public List<FestivalFilterResponse> toFilterResponseList(List<Festival> festivals){
+    public List<FestivalFilterResponse> toFilterResponseList(Page<Festival> festivals){
         return festivals.stream()
             .map(this::toFilterResponse)
             .collect(Collectors.toList());

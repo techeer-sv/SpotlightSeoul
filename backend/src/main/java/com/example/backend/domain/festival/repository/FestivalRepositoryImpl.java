@@ -3,10 +3,14 @@ package com.example.backend.domain.festival.repository;
 import static com.example.backend.domain.festival.entity.QFestival.*;
 import static org.springframework.util.StringUtils.*;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.entity.Festival;
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -20,19 +24,23 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	}
 
 	@Override
-		public List<Festival> findByTitleKeyword(String keyword){
-			return queryFactory.selectFrom(festival)
+		public Page<Festival> findByTitleKeyword(String keyword, Pageable pageable){
+		   QueryResults<Festival> results = queryFactory
+			    .selectFrom(festival)
 				.where(
 					festival.title.contains(keyword)
 						.or(Expressions.stringTemplate("function('replace',{0},{1},{2})",festival.title," ","").contains(keyword)
 						)
 				)
-				.fetch();
+						.offset(pageable.getOffset())
+						.limit(pageable.getPageSize())
+						.fetchResults();
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 		}
 
 	@Override
-	public List<Festival> filter(FestivalFilterSearchResponse response){
-		return queryFactory
+	public Page<Festival> filter(FestivalFilterSearchResponse response, Pageable pageable){
+		QueryResults<Festival> results = queryFactory
 			.selectFrom(festival)
 			.where(majorCodeNameEq(response.getMajorCodeName()),
 				subCodeNameEq(response.getSubCodeName()),
@@ -40,7 +48,11 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 				strtDateEq(response.getStrtDate()),
 				placeEq(response.getPlace()),
 				isFreeEq(response.getIsFree()))
-			.fetch();
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.fetchResults();
+
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 	}
 
 	private BooleanExpression majorCodeNameEq(String majorCodeName) {

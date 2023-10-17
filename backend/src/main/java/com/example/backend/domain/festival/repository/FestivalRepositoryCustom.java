@@ -2,12 +2,14 @@ package com.example.backend.domain.festival.repository;
 
 import java.util.List;
 
-import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.entity.Festival;
 
 public interface FestivalRepositoryCustom {
-	List<Festival> filter(FestivalFilterSearchResponse response);
+	Page<Festival> filter(FestivalFilterSearchResponse response, Pageable pageable);
 
-	List<Festival> findByTitleKeyword(String keyword);
+	Page<Festival> findByTitleKeyword(String keyword, Pageable pageable);
 }

@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,8 +35,8 @@ public class FestivalService {
         return festivalMapper.toFindResponse(festival);
     }
 
-    public List<FestivalSearchResponse> searchFestival(String keyword) {
-        List<Festival> festivals = festivalRepository.findByTitleKeyword(keyword);
+    public List<FestivalSearchResponse> searchFestival(String keyword, Pageable page) {
+        Page<Festival> festivals = festivalRepository.findByTitleKeyword(keyword, page);
         return festivalMapper.toSearchResponseList(festivals);
     }
 
@@ -45,8 +46,8 @@ public class FestivalService {
         return festivalMapper.toPageResponse(postByPagenation);
     }
 
-    public List<FestivalFilterResponse> filterFestivals(FestivalFilterSearchResponse response){
-        List<Festival> festivals = festivalRepository.filter(response);
+    public List<FestivalFilterResponse> filterFestivals(FestivalFilterSearchResponse response, Pageable page){
+        Page<Festival> festivals = festivalRepository.filter(response, page);
         return festivalMapper.toFilterResponseList(festivals);
     }
 
