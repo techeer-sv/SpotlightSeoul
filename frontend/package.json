@@ -49,5 +49,6 @@
     "prettier-plugin-tailwindcss": "^0.5.4",
     "typescript": "*",
     "vite": "^4.4.5"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
