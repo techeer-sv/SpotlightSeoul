@@ -3,6 +3,7 @@ package com.example.backend.domain.festival.mapper;
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
@@ -67,10 +68,13 @@ public class FestivalMapper {
             .build();
     }
 
-    public List<FestivalSearchResponse> toSearchResponseList(Page<Festival> festivals){
-        return festivals.stream()
-            .map(this::toSearchResponse)
-            .collect(Collectors.toList());
+    public FestivalSearchPageResponse toSearchResponseList(Page<Festival> festivals, int numPostByPagenation){
+        List<FestivalSearchResponse> festivalSearchResponseList =
+            festivals.stream().map(this::toSearchResponse).toList();
+        return FestivalSearchPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
+            .postResponses(festivalSearchResponseList)
+            .build();
     }
 
     public FestivalResponse toResponse(Festival festival) {
