@@ -11,7 +11,12 @@ import lombok.RequiredArgsConstructor;
 @Builder
 public class FestivalSearchResponse {
 	private Long id;
-	private String title;
+	private String orgName;
 	private String mainImg;
-
+	private String strtDate;
+	private String endDate;
+	private String title;
+	private String majorCodeName;
+	private String subCodeName;
+	private String date;
 }
