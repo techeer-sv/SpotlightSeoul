@@ -31,6 +31,7 @@ public class FestivalFilterResponse {
 		this.place = place;
 		this.isFree = isFree;
 		this.date = date;
+		this.mainImg = mainImg;
 	}
 }
 

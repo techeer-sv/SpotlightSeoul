@@ -19,7 +19,5 @@ public class FestivalFilterSearchResponse {
 	private String strtDate;
 	private String place;
 	private String isFree;
-	private String date;
-	private String mainImg;
 
 }
