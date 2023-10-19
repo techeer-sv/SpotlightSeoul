@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.repository.FestivalRepository;
 import com.example.backend.domain.festival.service.FestivalService;
@@ -47,9 +48,9 @@ public class FestivalController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword, @PageableDefault(size = 20)
+	public ResponseEntity<FestivalSearchPageResponse> searchFestivals(@RequestParam("keyword") String keyword, @PageableDefault(size = 20)
 		Pageable page){
-		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword, page);
+		FestivalSearchPageResponse searchResults = festivalService.searchFestival(keyword, page);
 		return ResponseEntity.ok(searchResults);
 	}
 

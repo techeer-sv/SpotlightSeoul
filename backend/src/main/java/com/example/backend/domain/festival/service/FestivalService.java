@@ -6,6 +6,7 @@ import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -35,9 +36,10 @@ public class FestivalService {
         return festivalMapper.toFindResponse(festival);
     }
 
-    public List<FestivalSearchResponse> searchFestival(String keyword, Pageable page) {
+    public FestivalSearchPageResponse searchFestival(String keyword, Pageable page) {
         Page<Festival> festivals = festivalRepository.findByTitleKeyword(keyword, page);
-        return festivalMapper.toSearchResponseList(festivals);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toSearchResponseList(festivals, numPostByPagenation);
     }
 
     public FestivalPageResponse getFestivalByPagination(final int offset, final int size) {
