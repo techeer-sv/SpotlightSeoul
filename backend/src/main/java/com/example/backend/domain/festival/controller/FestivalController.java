@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
@@ -55,8 +56,8 @@ public class FestivalController {
 	}
 
 	@GetMapping("/category")
-	public ResponseEntity<List<FestivalFilterResponse>> filterFestivals(FestivalFilterSearchResponse response, @PageableDefault(size = 20) Pageable page){
-		List<FestivalFilterResponse> filterResults = festivalService.filterFestivals(response, page);
+	public ResponseEntity<FestivalFilterPageResponse> filterFestivals(FestivalFilterSearchResponse response, @PageableDefault(size = 20) Pageable page){
+		FestivalFilterPageResponse filterResults = festivalService.filterFestivals(response, page);
 		return ResponseEntity.ok(filterResults);
 	}
 
