@@ -2,6 +2,7 @@ package com.example.backend.domain.festival.mapper;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
@@ -112,10 +113,13 @@ public class FestivalMapper {
             .build();
     }
 
-    public List<FestivalFilterResponse> toFilterResponseList(Page<Festival> festivals){
-        return festivals.stream()
-            .map(this::toFilterResponse)
-            .collect(Collectors.toList());
+    public FestivalFilterPageResponse toFilterResponseList(Page<Festival> festivals, int numPostByPagenation ){
+        List<FestivalFilterResponse> festivalFilterResponseList =
+            festivals.stream().map(this::toFilterResponse).toList();
+        return FestivalFilterPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
+            .postResponses(festivalFilterResponseList)
+            .build();
     }
 
 }

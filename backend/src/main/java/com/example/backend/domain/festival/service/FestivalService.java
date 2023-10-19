@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
@@ -49,9 +50,10 @@ public class FestivalService {
         return festivalMapper.toPageResponse(postByPagenation, numPostByPagenation);
     }
 
-    public List<FestivalFilterResponse> filterFestivals(FestivalFilterSearchResponse response, Pageable page){
+    public FestivalFilterPageResponse filterFestivals(FestivalFilterSearchResponse response, Pageable page){
         Page<Festival> festivals = festivalRepository.filter(response, page);
-        return festivalMapper.toFilterResponseList(festivals);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toFilterResponseList(festivals, numPostByPagenation );
     }
 
 }
