@@ -4,7 +4,6 @@ import static com.example.backend.domain.festival.entity.QFestival.*;
 import static org.springframework.util.StringUtils.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.springframework.data.domain.Page;

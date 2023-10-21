@@ -4,15 +4,13 @@ import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
-import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
-import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.utils.EventCategoryUtil;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -47,7 +45,7 @@ public class FestivalMapper {
             .title(festival.getTitle())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
-            .date(festival.getDate().toString())
+            .date(festival.getDate())
             .mainImg(festival.getMainImg())
             .useTrgt(festival.getUseTrgt())
             .orgLink(festival.getOrgLink())
