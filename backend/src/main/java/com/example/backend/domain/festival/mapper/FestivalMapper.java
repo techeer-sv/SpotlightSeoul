@@ -2,15 +2,15 @@ package com.example.backend.domain.festival.mapper;
 
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
-import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.utils.EventCategoryUtil;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -58,13 +58,22 @@ public class FestivalMapper {
             .id(festival.getId())
             .title(festival.getTitle())
             .mainImg(festival.getMainImg())
+            .majorCodeName(festival.getMajorCodeName())
+            .subCodeName(festival.getSubCodeName())
+            .date(festival.getDate())
+            .strtDate(festival.getStrtDate().toString())
+            .endDate(festival.getEndDate().toString())
+            .orgName(festival.getOrgName())
             .build();
     }
 
-    public List<FestivalSearchResponse> toSearchResponseList(Page<Festival> festivals){
-        return festivals.stream()
-            .map(this::toSearchResponse)
-            .collect(Collectors.toList());
+    public FestivalSearchPageResponse toSearchResponseList(Page<Festival> festivals, int numPostByPagenation){
+        List<FestivalSearchResponse> festivalSearchResponseList =
+            festivals.stream().map(this::toSearchResponse).toList();
+        return FestivalSearchPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
+            .postResponses(festivalSearchResponseList)
+            .build();
     }
 
     public FestivalResponse toResponse(Festival festival) {
@@ -72,8 +81,8 @@ public class FestivalMapper {
             .id(festival.getId())
             .orgName(festival.getOrgName())
             .mainImg(festival.getMainImg())
-            .strtDate(festival.getStrtDate())
-            .endDate(festival.getEndDate())
+            .strtDate(festival.getStrtDate().toString())
+            .endDate(festival.getEndDate().toString())
             .title(festival.getTitle())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
@@ -93,17 +102,22 @@ public class FestivalMapper {
             .id(festival.getId())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
-            .endDate(festival.getEndDate())
-            .strtDate(festival.getStrtDate())
+            .endDate(festival.getEndDate().toString())
+            .strtDate(festival.getStrtDate().toString())
             .place(festival.getPlace())
             .isFree(festival.getIsFree())
+            .date(festival.getDate())
+            .mainImg(festival.getMainImg())
             .build();
     }
 
-    public List<FestivalFilterResponse> toFilterResponseList(Page<Festival> festivals){
-        return festivals.stream()
-            .map(this::toFilterResponse)
-            .collect(Collectors.toList());
+    public FestivalFilterPageResponse toFilterResponseList(Page<Festival> festivals, int numPostByPagenation ){
+        List<FestivalFilterResponse> festivalFilterResponseList =
+            festivals.stream().map(this::toFilterResponse).toList();
+        return FestivalFilterPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
+            .postResponses(festivalFilterResponseList)
+            .build();
     }
 
 }

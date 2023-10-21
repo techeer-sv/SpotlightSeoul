@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +23,8 @@ public class Festival {
     private String orgName;
     private String useTrgt;  // 이용대상
     private String date; // 날짜/시간
-    private String endDate;
-    private String strtDate;
+    private LocalDateTime endDate;
+    private LocalDateTime strtDate;
     @Column(columnDefinition = "LONGTEXT")
     private String orgLink;
     private String mainImg;
@@ -34,8 +35,8 @@ public class Festival {
     private String isFree;
 
     @Builder
-    public Festival(String majorCodenName, String subCodeName, String orgName, String useTrgt, String date, String endDate,
-        String strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
+    public Festival(String majorCodenName, String subCodeName, String orgName, String useTrgt, String date, LocalDateTime endDate,
+        LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
         this.majorCodeName = majorCodenName;
         this.subCodeName = subCodeName;
         this.orgName = orgName;
