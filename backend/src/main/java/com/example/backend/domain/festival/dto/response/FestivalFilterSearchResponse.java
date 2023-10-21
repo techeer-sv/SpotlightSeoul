@@ -1,6 +1,10 @@
 package com.example.backend.domain.festival.dto.response;
 
-import jakarta.persistence.Column;
+
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,8 +19,8 @@ import lombok.Setter;
 public class FestivalFilterSearchResponse {
 	private String majorCodeName;
 	private String subCodeName;
-	private String endDate;
-	private String strtDate;
+	private LocalDate endDate;
+	private LocalDate strtDate;
 	private String place;
 	private String isFree;
 

@@ -3,6 +3,9 @@ package com.example.backend.domain.festival.repository;
 import static com.example.backend.domain.festival.entity.QFestival.*;
 import static org.springframework.util.StringUtils.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -63,12 +66,12 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 		return hasText(subCodeName) ? festival.subCodeName.eq(subCodeName) : null;
 	}
 
-	private BooleanExpression endDateEq(String endDate) {
-		return hasText(endDate) ? festival.endDate.eq(endDate) : null;
+	private BooleanExpression endDateEq(LocalDate endDate) {
+		return endDate != null ? festival.endDate.loe(endDate.atTime(LocalTime.MAX)) : null;
 	}
 
-	private BooleanExpression strtDateEq(String strtDate) {
-		return hasText(strtDate) ? festival.strtDate.eq(strtDate) : null;
+	private BooleanExpression strtDateEq(LocalDate strtDate) {
+		return strtDate != null ? festival.strtDate.goe(strtDate.atStartOfDay()) : null;
 	}
 
 	private BooleanExpression placeEq(String place) {

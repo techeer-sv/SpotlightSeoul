@@ -21,9 +21,10 @@ public class FestivalFilterResponse {
 	private String date;
 
 	@QueryProjection
-	public FestivalFilterResponse(Long id, String majorCodeName, String subCodeName, String endDate, String strtDate,
-		String place, String isFree, String date, String mainImg) {
+	public FestivalFilterResponse(Long id, String mainImg, String majorCodeName, String subCodeName, String endDate, String strtDate,
+		String place, String isFree, String date) {
 		this.id = id;
+		this.mainImg = mainImg;
 		this.majorCodeName = majorCodeName;
 		this.subCodeName = subCodeName;
 		this.endDate = endDate;
@@ -31,7 +32,6 @@ public class FestivalFilterResponse {
 		this.place = place;
 		this.isFree = isFree;
 		this.date = date;
-		this.mainImg = mainImg;
 	}
 }
 

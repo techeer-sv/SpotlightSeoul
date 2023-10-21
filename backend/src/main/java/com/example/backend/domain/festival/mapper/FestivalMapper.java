@@ -63,8 +63,8 @@ public class FestivalMapper {
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
             .date(festival.getDate())
-            .strtDate(festival.getStrtDate())
-            .endDate(festival.getEndDate())
+            .strtDate(festival.getStrtDate().toString())
+            .endDate(festival.getEndDate().toString())
             .orgName(festival.getOrgName())
             .build();
     }
@@ -104,8 +104,8 @@ public class FestivalMapper {
             .id(festival.getId())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
-            .endDate(festival.getEndDate())
-            .strtDate(festival.getStrtDate())
+            .endDate(festival.getEndDate().toString())
+            .strtDate(festival.getStrtDate().toString())
             .place(festival.getPlace())
             .isFree(festival.getIsFree())
             .date(festival.getDate())
