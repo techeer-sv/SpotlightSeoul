@@ -72,7 +72,7 @@ function MainPage() {
         </div>
 
         {/* 페이지네이션 */}
-        <Paging />
+        <Paging page={page} setPage={setPage} />
       </div>
     </div>
   );
