@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function PostCard({
-  postId,
+  id,
   orgName,
   mainImg,
   startDate,
@@ -9,7 +9,7 @@ function PostCard({
   title,
   category,
 }: {
-  postId: number;
+  id: number;
   orgName: string;
   mainImg: string;
   startDate: string;
@@ -22,7 +22,7 @@ function PostCard({
   return (
     <div
       onClick={() => {
-        navigate(`/detail/${postId}`);
+        navigate(`/detail/${id}`);
       }}
       className="flex flex-col items-center justify-center"
     >

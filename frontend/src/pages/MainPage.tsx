@@ -60,7 +60,7 @@ function MainPage() {
           {test?.map((post) => (
             <PostCard
               key={post.id}
-              postId={post.id}
+              id={post.id}
               orgName={post.org_name}
               mainImg={post.main_img}
               startDate={post.strt_date}
