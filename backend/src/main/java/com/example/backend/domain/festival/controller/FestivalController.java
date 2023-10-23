@@ -55,7 +55,7 @@ public class FestivalController {
 	@PostMapping
 	public ResponseEntity<FestivalSearchPageResponse> searchFestivals(@RequestBody FestivalSearchRequest keyword, @PageableDefault(size = 20)
 		Pageable page){
-		FestivalSearchPageResponse searchResults = festivalService.searchFestival(keyword.getKeyword(), page);
+		FestivalSearchPageResponse searchResults = festivalService.searchFestival(keyword.getTitle(), page);
 		return ResponseEntity.ok(searchResults);
 	}
 

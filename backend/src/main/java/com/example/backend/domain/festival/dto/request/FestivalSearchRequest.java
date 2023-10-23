@@ -10,5 +10,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 public class FestivalSearchRequest {
-	private String keyword;
+	private String title;
 }
