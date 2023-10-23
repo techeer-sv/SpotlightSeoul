@@ -18,7 +18,7 @@ function PostCard({
   category: string;
 }) {
   const navigate = useNavigate();
-  console.log('postid', postId);
+  // console.log('postid', postId);
   return (
     <div
       onClick={() => {
@@ -54,6 +54,7 @@ function PostCard({
         {/* 공연 기간 */}
         <p className="mt-1 text-left font-LexendDeca text-xs text-gray-500">
           {startDate}
+          {endDate}
         </p>
       </button>
     </div>
