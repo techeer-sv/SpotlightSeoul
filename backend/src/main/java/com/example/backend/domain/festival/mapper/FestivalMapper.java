@@ -88,6 +88,7 @@ public class FestivalMapper {
             .title(festival.getTitle())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
+            .date(festival.getDate())
             .build();
     }
     public FestivalPageResponse toPageResponse(Page<Festival> festivalList, int numPostByPagenation) {
