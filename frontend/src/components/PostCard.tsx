@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function PostCard({
-  postId,
+  id,
   orgName,
   mainImg,
   startDate,
@@ -9,7 +9,7 @@ function PostCard({
   title,
   category,
 }: {
-  postId: number;
+  id: number;
   orgName: string;
   mainImg: string;
   startDate: string;
@@ -18,11 +18,11 @@ function PostCard({
   category: string;
 }) {
   const navigate = useNavigate();
-  console.log('postid', postId);
+  // console.log('postid', postId);
   return (
     <div
       onClick={() => {
-        navigate(`/detail/${postId}`);
+        navigate(`/detail/${id}`);
       }}
       className="flex flex-col items-center justify-center"
     >
@@ -54,6 +54,7 @@ function PostCard({
         {/* 공연 기간 */}
         <p className="mt-1 text-left font-LexendDeca text-xs text-gray-500">
           {startDate}
+          {endDate}
         </p>
       </button>
     </div>
