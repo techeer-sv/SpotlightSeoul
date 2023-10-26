@@ -1,13 +1,11 @@
 package com.example.backend.domain.festival.service;
 
-import java.util.List;
-
 import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
-import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
-import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.mapper.FestivalMapper;
 import com.example.backend.domain.festival.repository.FestivalRepository;
@@ -30,14 +28,15 @@ public class FestivalService {
         festivalRepository.save(festivalMapper.toEntity(row));
     }
 
-    public FestivalDetailResponse findDetailFestival(Long id){
+    public FestivalDetailResponse findDetailFestival(Long id) {
         Festival festival = festivalRepository.findById(id).orElseThrow();
         return festivalMapper.toFindResponse(festival);
     }
 
-    public List<FestivalSearchResponse> searchFestival(String keyword, Pageable page) {
+    public FestivalSearchPageResponse searchFestival(String keyword, Pageable page) {
         Page<Festival> festivals = festivalRepository.findByTitleKeyword(keyword, page);
-        return festivalMapper.toSearchResponseList(festivals);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toSearchResponseList(festivals, numPostByPagenation);
     }
 
     public FestivalPageResponse getFestivalByPagination(final int offset, final int size) {
@@ -47,9 +46,10 @@ public class FestivalService {
         return festivalMapper.toPageResponse(postByPagenation, numPostByPagenation);
     }
 
-    public List<FestivalFilterResponse> filterFestivals(FestivalFilterSearchResponse response, Pageable page){
+    public FestivalFilterPageResponse filterFestivals(FestivalFilterSearchResponse response, Pageable page) {
         Page<Festival> festivals = festivalRepository.filter(response, page);
-        return festivalMapper.toFilterResponseList(festivals);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toFilterResponseList(festivals, numPostByPagenation);
     }
 
 }

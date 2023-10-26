@@ -4,10 +4,10 @@ import Filter from '../components/Filter';
 import PostCard from '../components/PostCard';
 import Paging from '../components/Paging';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 type PostCardData = {
-  postId: number;
+  id: number;
   org_name: string;
   main_img: string;
   strt_date: string;
@@ -16,30 +16,20 @@ type PostCardData = {
   category: string;
 };
 
-const SIZE = 20;
 function MainPage() {
-  const [postId, setPostId] = useState<number>(0);
-  const [orgName, setOrgName] = useState<string>('');
-  const [mainImg, setMainImg] = useState<string>('');
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [test, setTest] = useState<PostCardData[]>([]);
 
   // 메인페이지 PostCard API 연결
   const MainPostInformation = async () => {
     try {
-      const response = await axios.get<PostCardData>(
-        `http://localhost:8080/api/v1/festivals/1`,
-      );
-      const PostCardData: PostCardData = response.data;
-      setPostId(PostCardData.postId);
-      setOrgName(PostCardData.org_name);
-      setMainImg(PostCardData.main_img);
-      setStartDate(PostCardData.strt_date);
-      setEndDate(PostCardData.end_date);
-      setTitle(PostCardData.title);
-      setCategory(PostCardData.category);
+      const response = await axios
+        .get(
+          `http://localhost:8080/api/v1/festivals/page?offset=${page}&size=20`,
+        )
+        .then((res) => res.data.post_responses);
+      console.log(response);
+      setTest(response);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +37,7 @@ function MainPage() {
 
   useEffect(() => {
     MainPostInformation();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -67,19 +57,22 @@ function MainPage() {
       {/* 공연목록 */}
       <div className="flex flex-col items-center justify-center ">
         <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
-          <PostCard
-            postId={postId}
-            orgName={orgName}
-            mainImg={mainImg}
-            startDate={startDate}
-            endDate={endDate}
-            title={title}
-            category={category}
-          />
+          {test?.map((post) => (
+            <PostCard
+              key={post.id}
+              id={post.id}
+              orgName={post.org_name}
+              mainImg={post.main_img}
+              startDate={post.strt_date}
+              endDate={post.end_date}
+              title={post.title}
+              category={post.category}
+            />
+          ))}
         </div>
 
         {/* 페이지네이션 */}
-        <Paging />
+        <Paging page={page} setPage={setPage} />
       </div>
     </div>
   );

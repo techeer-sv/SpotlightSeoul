@@ -17,4 +17,5 @@ public class FestivalResponse {
     private String title;
     private String majorCodeName;
     private String subCodeName;
+    private String date;
 }

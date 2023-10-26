@@ -1,6 +1,5 @@
 package com.example.backend.domain.festival.repository;
 
-import java.util.List;
 
 import com.example.backend.domain.festival.entity.Festival;
 import org.springframework.data.domain.Page;

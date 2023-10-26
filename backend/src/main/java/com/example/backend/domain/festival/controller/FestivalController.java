@@ -8,13 +8,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.backend.domain.festival.dto.request.FestivalSearchRequest;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
+import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
+import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchResponse;
 import com.example.backend.domain.festival.repository.FestivalRepository;
 import com.example.backend.domain.festival.service.FestivalService;
@@ -46,16 +52,16 @@ public class FestivalController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<FestivalSearchResponse>> searchFestivals(@RequestParam("keyword") String keyword, @PageableDefault(size = 20)
+	@PostMapping
+	public ResponseEntity<FestivalSearchPageResponse> searchFestivals(@RequestBody FestivalSearchRequest keyword, @PageableDefault(size = 20)
 		Pageable page){
-		List<FestivalSearchResponse> searchResults = festivalService.searchFestival(keyword, page);
+		FestivalSearchPageResponse searchResults = festivalService.searchFestival(keyword.getTitle(), page);
 		return ResponseEntity.ok(searchResults);
 	}
 
 	@GetMapping("/category")
-	public ResponseEntity<List<FestivalFilterResponse>> filterFestivals(FestivalFilterSearchResponse response, @PageableDefault(size = 20) Pageable page){
-		List<FestivalFilterResponse> filterResults = festivalService.filterFestivals(response, page);
+	public ResponseEntity<FestivalFilterPageResponse> filterFestivals(FestivalFilterSearchResponse response, @PageableDefault(size = 20) Pageable page){
+		FestivalFilterPageResponse filterResults = festivalService.filterFestivals(response, page);
 		return ResponseEntity.ok(filterResults);
 	}
 

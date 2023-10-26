@@ -1,6 +1,8 @@
 package com.example.backend.api.data.vo;
 
+import com.example.backend.global.utils.TimeFormatter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,8 +14,8 @@ public class FestivalRow {
     private String orgName;
     private String useTrgt;
     private String date;
-    private String endDate;
-    private String strtDate;
+    private LocalDateTime endDate;
+    private LocalDateTime strtDate;
     private String orgLink;
     private String mainImg;
     private Double lat; //경도
@@ -40,8 +42,8 @@ public class FestivalRow {
         this.orgName = orgName;
         this.useTrgt = useTrgt;
         this.date = date;
-        this.endDate = endDate;
-        this.strtDate = strtDate;
+        this.endDate = TimeFormatter.timeFormat(endDate);
+        this.strtDate = TimeFormatter.timeFormat(strtDate);
         this.orgLink = orgLink;
         this.mainImg = mainImg;
         this.lat = lat;
