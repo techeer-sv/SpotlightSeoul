@@ -29,6 +29,27 @@ const Region = [
   { value: '서울외지역' },
 ];
 
+const Cost = [{ value: '비용' }, { value: '유료' }, { value: '무료' }];
+
+const Field = [
+  { value: '분야' },
+  { value: '공연' },
+  { value: '전시' },
+  { value: '축제' },
+  { value: '교육/체험' },
+  { value: '기타' },
+];
+
+const SubField = [
+  { value: '세부분야' },
+  { value: '콘서트' },
+  { value: '클래식' },
+  { value: '연극' },
+  { value: '무용' },
+  { value: '국악' },
+  { value: '독주/독창회' },
+];
+
 function Filter() {
   return (
     <div className=" flex items-center justify-center">
@@ -45,30 +66,23 @@ function Filter() {
 
         {/* 비용 */}
         <select className="mx-2 my-3 h-8" id="비용">
-          <option value="비용">비용별 선택</option>
-          <option value="유료">유료</option>
-          <option value="무료">무료</option>
+          {Cost.map((item) => (
+            <option value={item.value}>{item.value}</option>
+          ))}
         </select>
 
         {/* 분야 */}
         <select className="mx-1 my-3 h-8" id="분야">
-          <option value="분야">분야</option>
-          <option value="공연">공연</option>
-          <option value="전시">전시</option>
-          <option value="축제">축제</option>
-          <option value="교육/체험">교육/체험</option>
-          <option value="기타">기타</option>
+          {Field.map((item) => (
+            <option value={item.value}>{item.value}</option>
+          ))}
         </select>
 
         {/* 세부분야 */}
         <select className="my-3 h-8" id="세부분야">
-          <option value="세부분야">세부분야</option>
-          <option value="콘서트">콘서트</option>
-          <option value="클래식">클래식</option>
-          <option value="연극">연극</option>
-          <option value="무용">무용</option>
-          <option value="국악">국악</option>
-          <option value="독주/독창회">독주/독창회</option>
+          {SubField.map((item) => (
+            <option value={item.value}>{item.value}</option>
+          ))}
         </select>
 
         {/* 기간 */}
