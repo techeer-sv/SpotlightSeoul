@@ -3,7 +3,6 @@ const Region = [
   { value: '강남구' },
   { value: '강동구' },
   { value: '강북구' },
-  { value: '강남구' },
   { value: '강서구' },
   { value: '관악구' },
   { value: '광진구' },
@@ -50,7 +49,47 @@ const SubField = [
   { value: '독주/독창회' },
 ];
 
-function Filter() {
+// type FilterProps = {
+//   region: string;
+//   setRegion: (region: string) => void;
+//   isFree: string;
+//   setIsFree: (cost: string) => void;
+//   field: string;
+//   setField: (field: string) => void;
+//   subField: string;
+//   setSubField: (subField: string) => void;
+//   startDate: string;
+//   setStartDate: (startDate: string) => void;
+//   endDate: string;
+//   setEndDate: (endDate: string) => void;
+//   search: string;
+//   setSearch: (search: string) => void;
+// };
+
+function Filter({
+  setIsFree,
+  setField,
+  setSubField,
+  setStartDate,
+  setEndDate,
+}: {
+  setIsFree: (cost: string) => void;
+  setField: (field: string) => void;
+  setSubField: (subField: string) => void;
+  setStartDate: (startDate: string) => void;
+  setEndDate: (endDate: string) => void;
+}) {
+  const onChangeCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let { value } = e.currentTarget;
+    if (value === '비용') value = '';
+    setIsFree(value);
+  };
+
+  const onChangeField = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let { value } = e.currentTarget;
+    if (value === '분야') value = '';
+    setField(value);
+  };
   return (
     <div className=" flex items-center justify-center">
       <div className="mt-16 w-9/12 items-center justify-center bg-zinc-100 px-1 py-2 font-Pretendard">
@@ -60,28 +99,36 @@ function Filter() {
           id="지역"
         >
           {Region.map((item) => (
-            <option value={item.value}>{item.value}</option>
+            <option key={item.value} value={item.value}>
+              {item.value}
+            </option>
           ))}
         </select>
 
         {/* 비용 */}
-        <select className="mx-2 my-3 h-8" id="비용">
+        <select className="mx-2 my-3 h-8" id="비용" onChange={onChangeCost}>
           {Cost.map((item) => (
-            <option value={item.value}>{item.value}</option>
+            <option key={item.value} value={item.value}>
+              {item.value}
+            </option>
           ))}
         </select>
 
         {/* 분야 */}
-        <select className="mx-1 my-3 h-8" id="분야">
+        <select className="mx-1 my-3 h-8" id="분야" onChange={onChangeField}>
           {Field.map((item) => (
-            <option value={item.value}>{item.value}</option>
+            <option key={item.value} value={item.value}>
+              {item.value}
+            </option>
           ))}
         </select>
 
         {/* 세부분야 */}
         <select className="my-3 h-8" id="세부분야">
           {SubField.map((item) => (
-            <option value={item.value}>{item.value}</option>
+            <option key={item.value} value={item.value}>
+              {item.value}
+            </option>
           ))}
         </select>
 
@@ -92,6 +139,9 @@ function Filter() {
             className="inline-block h-8 text-center"
             type="date"
             autoComplete="off"
+            onChange={(e: any) => {
+              console.log('start', e.target.value);
+            }}
           />
           -
           <input
@@ -109,6 +159,7 @@ function Filter() {
         />
         <button
           type="button"
+          onClick={() => {}}
           className="mx-0 my-3 rounded-[4px] bg-[#06439F] px-3 py-[5px] font-LexendDeca text-white"
         >
           검색

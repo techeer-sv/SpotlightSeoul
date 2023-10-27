@@ -8,6 +8,7 @@ function PostCard({
   endDate,
   title,
   category,
+  date,
 }: {
   id: number;
   orgName: string;
@@ -16,6 +17,7 @@ function PostCard({
   endDate: string;
   title: string;
   category: string;
+  date: string;
 }) {
   const navigate = useNavigate();
   // console.log('postid', postId);
@@ -31,7 +33,7 @@ function PostCard({
       ? '#70D4A4'
       : category === '기타'
       ? '#AE5D97'
-      : '#DEDEDE'; // 기본값 (여기서는 검은색) 설정
+      : '#DEDEDE'; // 기본값
   return (
     <div
       onClick={() => {
@@ -67,8 +69,8 @@ function PostCard({
         </p>
         {/* 공연 기간 */}
         <p className="mt-1 text-left font-LexendDeca text-xs text-gray-500">
-          {startDate}
-          {endDate}
+          {/* {startDate} ~ {endDate} */}
+          {date}
         </p>
       </button>
     </div>
