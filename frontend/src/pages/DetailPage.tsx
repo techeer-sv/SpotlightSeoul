@@ -3,6 +3,7 @@ import FestivalInformation from '../components/FestivalInformation';
 import MapInformation from '../components/MapInformation';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 type FestivalData = {
   main_img: string;
@@ -19,6 +20,8 @@ type FestivalData = {
 };
 
 function DetailPage() {
+  const { id } = useParams<{ id: string }>();
+
   const [mainImg, setMainImg] = useState<string>('');
   const [majorCodeName, setMajorCodeName] = useState<string>('');
   const [subCodeName, setSubCodeName] = useState<string>('');
@@ -35,7 +38,7 @@ function DetailPage() {
   const FestivalDetailInformation = async () => {
     try {
       const response = await axios.get<FestivalData>(
-        'http://localhost:8080/api/v1/festivals/443',
+        `http://localhost:8080/api/v1/festivals/${id}`,
       );
       const FestivalData: FestivalData = response.data;
       setMainImg(FestivalData.main_img);
@@ -77,7 +80,7 @@ function DetailPage() {
           orgLink={orgLink}
         />
         {/* 위치정보 (지도) */}
-        <MapInformation latitude={longitude} longitude={latitude} />
+        <MapInformation latitude={latitude} longitude={longitude} />
       </div>
     </div>
   );
