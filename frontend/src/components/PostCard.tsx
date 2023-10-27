@@ -31,7 +31,7 @@ function PostCard({
       ? '#70D4A4'
       : category === '기타'
       ? '#AE5D97'
-      : '#000000'; // 기본값 (여기서는 검은색) 설정
+      : '#DEDEDE'; // 기본값 (여기서는 검은색) 설정
   return (
     <div
       onClick={() => {
