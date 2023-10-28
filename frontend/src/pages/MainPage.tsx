@@ -19,6 +19,7 @@ type PostCardData = {
 function MainPage() {
   const [page, setPage] = useState<number>(1);
   const [test, setTest] = useState<PostCardData[]>([]);
+  const [searchResults, setSearchResults] = useState<PostCardData[]>([]);
 
   // 메인페이지 PostCard API 연결
   const MainPostInformation = async () => {
@@ -39,10 +40,18 @@ function MainPage() {
     MainPostInformation();
   }, [page]);
 
+  useEffect(() => {
+    if (searchResults.length > 0) {
+      setTest(searchResults); // 검색 결과가 있으면, test 상태를 갱신합니다.
+    } else {
+      MainPostInformation(); // 검색 결과가 없으면, 기존 정보를 로드합니다.
+    }
+  }, [page, searchResults]);
+
   return (
     <div>
       {/* 상단바 */}
-      <NavBar />
+      <NavBar setSearchResults={setSearchResults} />
       {/* 배너 */}
       <Banner />
       {/* 드롭다운 필터링 */}
@@ -57,18 +66,35 @@ function MainPage() {
       {/* 공연목록 */}
       <div className="flex flex-col items-center justify-center ">
         <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
-          {test?.map((post) => (
-            <PostCard
-              key={post.id}
-              id={post.id}
-              orgName={post.org_name}
-              mainImg={post.main_img}
-              startDate={post.strt_date}
-              endDate={post.end_date}
-              title={post.title}
-              category={post.category}
-            />
-          ))}
+          {searchResults.length > 0
+            ? searchResults.map(
+                (
+                  post, // 변경된 부분
+                ) => (
+                  <PostCard
+                    key={post.id}
+                    id={post.id}
+                    orgName={post.org_name}
+                    mainImg={post.main_img}
+                    startDate={post.strt_date}
+                    endDate={post.end_date}
+                    title={post.title}
+                    category={post.category}
+                  />
+                ),
+              )
+            : test?.map((post) => (
+                <PostCard
+                  key={post.id}
+                  id={post.id}
+                  orgName={post.org_name}
+                  mainImg={post.main_img}
+                  startDate={post.strt_date}
+                  endDate={post.end_date}
+                  title={post.title}
+                  category={post.category}
+                />
+              ))}
         </div>
 
         {/* 페이지네이션 */}
