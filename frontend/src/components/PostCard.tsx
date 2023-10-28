@@ -33,7 +33,7 @@ function PostCard({
       ? '#70D4A4'
       : category === '기타'
       ? '#AE5D97'
-      : '#DEDEDE'; // 기본값
+      : '#D4D4D4'; // 기본값
   return (
     <div
       onClick={() => {
