@@ -70,6 +70,9 @@ function NavBar() {
         <button
           className="ml-5 flex basis-1/4 text-left font-LexendDeca text-xl font-bold md:text-2xl"
           type="button"
+          onClick={() => {
+            window.location.href = '/';
+          }}
         >
           <span className="text-[#06439F]">Spotlight</span>
           <span className="text-[#FFD600]">Seoul</span>
