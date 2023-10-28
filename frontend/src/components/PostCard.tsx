@@ -1,36 +1,60 @@
-import exampleThum from '../assets/images/jpg/exampleThum.jpeg';
+import { useNavigate } from 'react-router-dom';
 
-function PostCard() {
+function PostCard({
+  id,
+  orgName,
+  mainImg,
+  startDate,
+  endDate,
+  title,
+  category,
+}: {
+  id: number;
+  orgName: string;
+  mainImg: string;
+  startDate: string;
+  endDate: string;
+  title: string;
+  category: string;
+}) {
+  const navigate = useNavigate();
+  // console.log('postid', postId);
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div
+      onClick={() => {
+        navigate(`/detail/${id}`);
+      }}
+      className="flex flex-col items-center justify-center"
+    >
       <button
         type="button"
-        className="rounded-[10px] bg-white border border-[#434343] w-[180px] h-80 px-3 mx-4 my-6"
+        className="mx-4 my-6 h-80 w-[180px] rounded-[10px] border border-[#434343] bg-white px-3"
       >
         {/* 썸네일 이미지 */}
         <div className="">
           <img
-            className="rounded-[10px] w-[140px] mx-auto "
-            src={exampleThum}
+            className="mx-auto w-[140px] rounded-[10px] "
+            src={mainImg}
             alt="thum"
           />
           <div
-            className="absolute flex justify-center text-center items-center
-            -mt-[198px] ml-[87px] bg-[#E34646]
-            w-[60px] h-[24px] font-LexendDeca text-white text-xs font-medium
-            rounded-tr-[10px] rounded-bl-[10px] "
+            className="absolute -mt-[198px] ml-[87px] flex h-[24px]
+            w-[60px] items-center justify-center
+            rounded-bl-[10px] rounded-tr-[10px] bg-[#E34646] text-center font-LexendDeca text-xs
+            font-medium text-white "
           >
             공연
           </div>
         </div>
 
         {/* 공연명 */}
-        <p className="font-LexendDeca text-sm text-left font-bold mt-4">
-          [2023 한강노들섬 클래식] 발레 백조의 호수
+        <p className="mt-4 text-left font-LexendDeca text-sm font-bold">
+          {title}
         </p>
         {/* 공연 기간 */}
-        <p className="font-LexendDeca text-gray-500 text-xs text-left mt-1">
-          2023-10-14 ~ 2023-10-15
+        <p className="mt-1 text-left font-LexendDeca text-xs text-gray-500">
+          {startDate}
+          {endDate}
         </p>
       </button>
     </div>
