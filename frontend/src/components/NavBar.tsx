@@ -83,7 +83,7 @@ function NavBar() {
         <div className="flex h-7 w-11/12 basis-2/4 rounded-xl border-[1px] border-solid border-[#C6C6C6] bg-[#F9F9F9] sm:h-9 md:h-11">
           <img className="ml-2 w-4 md:w-5" src={magnifier} alt="magnifier" />
           <input
-            className="ml-1 bg-[#F9F9F9] text-sm focus:border-transparent focus:outline-none md:text-base"
+            className="ml-1 w-11/12 bg-[#F9F9F9] text-sm focus:border-transparent focus:outline-none md:text-base"
             type="text"
             placeholder="search"
             onChange={inputSearchHandler}
