@@ -56,6 +56,7 @@ function NavBar() {
 
         setSearchResults(postCardDataArray);
         navigate('/');
+        window.scrollTo(0, 0);
       } catch (error) {
         console.log(error);
       }
@@ -63,7 +64,7 @@ function NavBar() {
   };
 
   return (
-    <div>
+    <div className="sticky top-0 z-50">
       <div className="flex h-14 w-screen items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
         {/* 로고 */}
         <button

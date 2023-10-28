@@ -4,7 +4,7 @@ import Filter from '../components/Filter';
 import PostCard from '../components/PostCard';
 import Paging from '../components/Paging';
 import { useEffect, useState } from 'react';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { searchResultsState } from '../RecoilState';
 import axios from 'axios';
 
@@ -21,7 +21,6 @@ type PostCardData = {
 function MainPage() {
   const [page, setPage] = useState<number>(1);
   const [test, setTest] = useState<PostCardData[]>([]);
-  const setSearchResults = useSetRecoilState(searchResultsState);
   const searchResults = useRecoilValue(searchResultsState);
 
   // 메인페이지 PostCard API 연결

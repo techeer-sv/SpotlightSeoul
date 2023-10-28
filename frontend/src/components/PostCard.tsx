@@ -23,6 +23,7 @@ function PostCard({
     <div
       onClick={() => {
         navigate(`/detail/${id}`);
+        window.scrollTo(0, 0);
       }}
       className="flex flex-col items-center justify-center"
     >
