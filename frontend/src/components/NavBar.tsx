@@ -1,7 +1,10 @@
 import '../index.css';
 import magnifier from '../assets/images/svg/magnifier.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { searchResultsState, PostCardData } from '../RecoilState';
 
 type PostResponse = {
   id: number;
@@ -20,22 +23,10 @@ type searchResponseData = {
   post_responses: PostResponse[];
 };
 
-type PostCardData = {
-  id: number;
-  org_name: string;
-  main_img: string;
-  strt_date: string;
-  end_date: string;
-  title: string;
-  category: string;
-};
-
-type NavBarProps = {
-  setSearchResults: React.Dispatch<React.SetStateAction<PostCardData[]>>; // 새로운 Props 타입 정의
-};
-
-function NavBar({ setSearchResults }: NavBarProps) {
+function NavBar() {
   const [searchTitle, setSearchTitle] = useState<string>('');
+  const setSearchResults = useSetRecoilState(searchResultsState);
+  const navigate = useNavigate();
 
   const inputSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -45,12 +36,26 @@ function NavBar({ setSearchResults }: NavBarProps) {
   const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       try {
+        // 검색 API
         const response = await axios.post<searchResponseData>(
           'http://localhost:8080/api/v1/festivals',
           { title: searchTitle },
         );
         const searchResponseData: searchResponseData = response.data;
-        setSearchResults(searchResponseData.post_responses); // 이 부분은 PostResponse를 PostCardData로 변환해야 할 것 같습니다.
+
+        const postCardDataArray: PostCardData[] =
+          searchResponseData.post_responses.map((post) => ({
+            id: post.id,
+            org_name: post.org_name,
+            main_img: post.main_img,
+            strt_date: post.strt_date,
+            end_date: post.end_date,
+            title: post.title,
+            category: `${post.major_code_name}, ${post.sub_code_name}`, // category 필드 추가
+          }));
+
+        setSearchResults(postCardDataArray);
+        navigate('/');
       } catch (error) {
         console.log(error);
       }

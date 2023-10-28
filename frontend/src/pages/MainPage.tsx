@@ -4,7 +4,9 @@ import Filter from '../components/Filter';
 import PostCard from '../components/PostCard';
 import Paging from '../components/Paging';
 import { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { searchResultsState } from '../RecoilState';
+import axios from 'axios';
 
 type PostCardData = {
   id: number;
@@ -19,7 +21,8 @@ type PostCardData = {
 function MainPage() {
   const [page, setPage] = useState<number>(1);
   const [test, setTest] = useState<PostCardData[]>([]);
-  const [searchResults, setSearchResults] = useState<PostCardData[]>([]);
+  const setSearchResults = useSetRecoilState(searchResultsState);
+  const searchResults = useRecoilValue(searchResultsState);
 
   // 메인페이지 PostCard API 연결
   const MainPostInformation = async () => {
@@ -37,21 +40,17 @@ function MainPage() {
   };
 
   useEffect(() => {
-    MainPostInformation();
-  }, [page]);
-
-  useEffect(() => {
     if (searchResults.length > 0) {
-      setTest(searchResults); // 검색 결과가 있으면, test 상태를 갱신합니다.
+      setTest(searchResults);
     } else {
-      MainPostInformation(); // 검색 결과가 없으면, 기존 정보를 로드합니다.
+      MainPostInformation();
     }
   }, [page, searchResults]);
 
   return (
     <div>
       {/* 상단바 */}
-      <NavBar setSearchResults={setSearchResults} />
+      <NavBar />
       {/* 배너 */}
       <Banner />
       {/* 드롭다운 필터링 */}
@@ -67,22 +66,18 @@ function MainPage() {
       <div className="flex flex-col items-center justify-center ">
         <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
           {searchResults.length > 0
-            ? searchResults.map(
-                (
-                  post, // 변경된 부분
-                ) => (
-                  <PostCard
-                    key={post.id}
-                    id={post.id}
-                    orgName={post.org_name}
-                    mainImg={post.main_img}
-                    startDate={post.strt_date}
-                    endDate={post.end_date}
-                    title={post.title}
-                    category={post.category}
-                  />
-                ),
-              )
+            ? searchResults.map((post) => (
+                <PostCard
+                  key={post.id}
+                  id={post.id}
+                  orgName={post.org_name}
+                  mainImg={post.main_img}
+                  startDate={post.strt_date}
+                  endDate={post.end_date}
+                  title={post.title}
+                  category={post.category}
+                />
+              ))
             : test?.map((post) => (
                 <PostCard
                   key={post.id}
@@ -96,7 +91,6 @@ function MainPage() {
                 />
               ))}
         </div>
-
         {/* 페이지네이션 */}
         <Paging page={page} setPage={setPage} />
       </div>
