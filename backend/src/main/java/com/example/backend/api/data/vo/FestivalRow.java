@@ -11,6 +11,7 @@ import lombok.ToString;
 public class FestivalRow {
 
     private String codeName;
+    private String guName;
     private String orgName;
     private String useTrgt;
     private String date;
@@ -26,6 +27,7 @@ public class FestivalRow {
 
     public FestivalRow(
             @JsonProperty("CODENAME") String codeName,
+            @JsonProperty("GUNAME") String guName,
             @JsonProperty("ORG_NAME") String orgName,
             @JsonProperty("USE_TRGT") String useTrgt,
             @JsonProperty("DATE") String date,
@@ -39,6 +41,7 @@ public class FestivalRow {
             @JsonProperty("TITLE") String title,
             @JsonProperty("IS_FREE") String isFree){
         this.codeName = codeName;
+        this.guName = guName;
         this.orgName = orgName;
         this.useTrgt = useTrgt;
         this.date = date;
