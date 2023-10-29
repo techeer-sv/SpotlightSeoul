@@ -8,6 +8,7 @@ function PostCard({
   endDate,
   title,
   category,
+  date,
 }: {
   id: number;
   orgName: string;
@@ -16,9 +17,23 @@ function PostCard({
   endDate: string;
   title: string;
   category: string;
+  date: string;
 }) {
   const navigate = useNavigate();
   // console.log('postid', postId);
+
+  const backgroundColor =
+    category === '공연'
+      ? '#E34646'
+      : category === '전시'
+      ? '#4A6BAB'
+      : category === '축제'
+      ? '#88D64C'
+      : category === '교육/체험'
+      ? '#70D4A4'
+      : category === '기타'
+      ? '#AE5D97'
+      : '#D4D4D4'; // 기본값
   return (
     <div
       onClick={() => {
@@ -34,7 +49,7 @@ function PostCard({
         {/* 썸네일 이미지 */}
         <div className="">
           <img
-            className="mx-auto w-[140px] rounded-[10px] "
+            className="mx-auto h-[198px] w-[140px] rounded-[10px] "
             src={mainImg}
             alt="thum"
           />
@@ -43,8 +58,9 @@ function PostCard({
             w-[60px] items-center justify-center
             rounded-bl-[10px] rounded-tr-[10px] bg-[#E34646] text-center font-LexendDeca text-xs
             font-medium text-white "
+            style={{ backgroundColor }}
           >
-            공연
+            {category}
           </div>
         </div>
 
@@ -54,8 +70,8 @@ function PostCard({
         </p>
         {/* 공연 기간 */}
         <p className="mt-1 text-left font-LexendDeca text-xs text-gray-500">
-          {startDate}
-          {endDate}
+          {/* {startDate} ~ {endDate} */}
+          {date}
         </p>
       </button>
     </div>
