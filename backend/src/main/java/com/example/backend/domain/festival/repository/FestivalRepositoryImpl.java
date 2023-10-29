@@ -45,16 +45,25 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 		QueryResults<Festival> results = queryFactory
 			.selectFrom(festival)
 			.where(majorCodeNameEq(response.getMajorCodeName()),
+				guNameEq(response.getGuName()),
 				subCodeNameEq(response.getSubCodeName()),
 				endDateEq(response.getEndDate()),
 				strtDateEq(response.getStrtDate()),
 				placeEq(response.getPlace()),
-				isFreeEq(response.getIsFree()))
+				isFreeEq(response.getIsFree()),
+				titleEq(response.getTitle()))
 			.offset(pageable.getOffset())
 			.limit(pageable.getPageSize())
 			.fetchResults();
 
 		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+	}
+
+	private BooleanExpression guNameEq(String guName) {
+		return hasText(guName) ? festival.guName.eq(guName) : null;
+	}
+	private BooleanExpression titleEq(String title) {
+		return hasText(title) ? festival.title.eq(title) : null;
 	}
 
 	private BooleanExpression majorCodeNameEq(String majorCodeName) {

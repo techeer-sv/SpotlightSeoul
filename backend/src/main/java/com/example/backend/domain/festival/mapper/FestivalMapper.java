@@ -21,6 +21,7 @@ public class FestivalMapper {
         return Festival.builder()
             .majorCodenName(EventCategoryUtil.getCategory(row.getCodeName()))
             .subCodeName(row.getCodeName())
+            .guName(row.getGuName())
             .orgName(row.getOrgName())
             .useTrgt(row.getUseTrgt())
             .date(row.getDate())
@@ -101,6 +102,8 @@ public class FestivalMapper {
     public FestivalFilterResponse toFilterResponse(Festival festival) {
         return FestivalFilterResponse.builder()
             .id(festival.getId())
+            .title(festival.getTitle())
+            .guName(festival.getGuName())
             .majorCodeName(festival.getMajorCodeName())
             .subCodeName(festival.getSubCodeName())
             .endDate(festival.getEndDate().toString())

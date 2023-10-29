@@ -17,11 +17,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class FestivalFilterSearchResponse {
+	private String guName;
 	private String majorCodeName;
 	private String subCodeName;
 	private LocalDate endDate;
 	private LocalDate strtDate;
 	private String place;
 	private String isFree;
+	private String title;
 
 }

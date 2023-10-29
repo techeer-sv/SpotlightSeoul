@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FestivalFilterResponse {
 	private Long id;
+	private String title;
 	private String mainImg;
+	private String guName;
 	private String majorCodeName;
 	private String subCodeName;
 	private String endDate;
@@ -21,10 +23,12 @@ public class FestivalFilterResponse {
 	private String date;
 
 	@QueryProjection
-	public FestivalFilterResponse(Long id, String mainImg, String majorCodeName, String subCodeName, String endDate, String strtDate,
+	public FestivalFilterResponse(Long id, String title, String mainImg, String guName, String majorCodeName, String subCodeName, String endDate, String strtDate,
 		String place, String isFree, String date) {
 		this.id = id;
+		this.title = title;
 		this.mainImg = mainImg;
+		this.guName = guName;
 		this.majorCodeName = majorCodeName;
 		this.subCodeName = subCodeName;
 		this.endDate = endDate;

@@ -20,6 +20,7 @@ public class Festival {
     private Long id;
     private String majorCodeName;
     private String subCodeName;
+    private String guName;
     private String orgName;
     private String useTrgt;  // 이용대상
     private String date; // 날짜/시간
@@ -35,10 +36,11 @@ public class Festival {
     private String isFree;
 
     @Builder
-    public Festival(String majorCodenName, String subCodeName, String orgName, String useTrgt, String date, LocalDateTime endDate,
+    public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt, String date, LocalDateTime endDate,
         LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
         this.majorCodeName = majorCodenName;
         this.subCodeName = subCodeName;
+        this.guName = guName;
         this.orgName = orgName;
         this.useTrgt = useTrgt;
         this.date = date;
