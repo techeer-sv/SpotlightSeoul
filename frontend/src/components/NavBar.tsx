@@ -51,7 +51,8 @@ function NavBar() {
             strt_date: post.strt_date,
             end_date: post.end_date,
             title: post.title,
-            category: `${post.major_code_name}, ${post.sub_code_name}`, // category 필드 추가
+            major_code_name: post.major_code_name,
+            date: post.date,
           }));
 
         setSearchResults(postCardDataArray);

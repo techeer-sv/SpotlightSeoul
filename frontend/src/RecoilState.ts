@@ -7,7 +7,8 @@ export type PostCardData = {
   strt_date: string;
   end_date: string;
   title: string;
-  category: string;
+  major_code_name: string;
+  date: string;
 };
 
 export const searchResultsState = atom<PostCardData[]>({

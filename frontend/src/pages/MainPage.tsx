@@ -19,14 +19,14 @@ type PostCardData = {
   date: string;
 };
 
-type FilterData = {
-  id: number;
-  is_free: string;
-  strt_date: string;
-  end_date: string;
-  major_code_name: string;
-  sub_code_name: string;
-};
+// type FilterData = {
+//   id: number;
+//   is_free: string;
+//   strt_date: string;
+//   end_date: string;
+//   major_code_name: string;
+//   sub_code_name: string;
+// };
 
 function MainPage() {
   // 메인페이지 PostCard API 연결을 위한 state
@@ -98,15 +98,13 @@ function MainPage() {
     }
   }, [page, isFree, startDate, endDate, field, subField]);
 
-
-   useEffect(() => {
+  useEffect(() => {
     if (searchResults.length > 0) {
       setTest(searchResults);
     } else {
       MainPostInformation();
     }
   }, [page, searchResults]);
-
 
   return (
     <div>
@@ -136,29 +134,29 @@ function MainPage() {
           {searchResults.length > 0
             ? searchResults.map((post) => (
                 <PostCard
-              key={post.id}
-              id={post.id}
-              orgName={post.org_name}
-              mainImg={post.main_img}
-              startDate={post.strt_date}
-              endDate={post.end_date}
-              title={post.title}
-              category={post.major_code_name}
-              date={post.date}
-            />
+                  key={post.id}
+                  id={post.id}
+                  orgName={post.org_name}
+                  mainImg={post.main_img}
+                  startDate={post.strt_date}
+                  endDate={post.end_date}
+                  title={post.title}
+                  category={post.major_code_name}
+                  date={post.date}
+                />
               ))
             : test?.map((post) => (
-                 <PostCard
-              key={post.id}
-              id={post.id}
-              orgName={post.org_name}
-              mainImg={post.main_img}
-              startDate={post.strt_date}
-              endDate={post.end_date}
-              title={post.title}
-              category={post.major_code_name}
-              date={post.date}
-            />
+                <PostCard
+                  key={post.id}
+                  id={post.id}
+                  orgName={post.org_name}
+                  mainImg={post.main_img}
+                  startDate={post.strt_date}
+                  endDate={post.end_date}
+                  title={post.title}
+                  category={post.major_code_name}
+                  date={post.date}
+                />
               ))}
         </div>
         {/* 페이지네이션 */}
