@@ -4,6 +4,8 @@ import Filter from '../components/Filter';
 import PostCard from '../components/PostCard';
 import Paging from '../components/Paging';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { searchResultsState } from '../RecoilState';
 import axios from 'axios';
 
 type PostCardData = {
@@ -38,6 +40,7 @@ function MainPage() {
   const [endDate, setEndDate] = useState<string>('');
   const [field, setField] = useState<string>('');
   const [subField, setSubField] = useState<string>('');
+  const searchResults = useRecoilValue(searchResultsState);
 
   // 메인페이지 PostCard API 연결
   const MainPostInformation = async () => {
@@ -95,6 +98,16 @@ function MainPage() {
     }
   }, [page, isFree, startDate, endDate, field, subField]);
 
+
+   useEffect(() => {
+    if (searchResults.length > 0) {
+      setTest(searchResults);
+    } else {
+      MainPostInformation();
+    }
+  }, [page, searchResults]);
+
+
   return (
     <div>
       {/* 상단바 */}
@@ -120,8 +133,9 @@ function MainPage() {
       {/* 공연목록 */}
       <div className="flex flex-col items-center justify-center ">
         <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
-          {test?.map((post) => (
-            <PostCard
+          {searchResults.length > 0
+            ? searchResults.map((post) => (
+                <PostCard
               key={post.id}
               id={post.id}
               orgName={post.org_name}
@@ -132,9 +146,21 @@ function MainPage() {
               category={post.major_code_name}
               date={post.date}
             />
-          ))}
+              ))
+            : test?.map((post) => (
+                 <PostCard
+              key={post.id}
+              id={post.id}
+              orgName={post.org_name}
+              mainImg={post.main_img}
+              startDate={post.strt_date}
+              endDate={post.end_date}
+              title={post.title}
+              category={post.major_code_name}
+              date={post.date}
+            />
+              ))}
         </div>
-
         {/* 페이지네이션 */}
         <Paging page={page} setPage={setPage} />
       </div>
