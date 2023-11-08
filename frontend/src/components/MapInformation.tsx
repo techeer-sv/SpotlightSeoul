@@ -73,7 +73,7 @@ function MapInformation({
           위치 안내
         </span>
         {isMapLoaded && (
-          <div id="map" className="mt-4 h-[500px] w-11/12 sm:mt-6 lg:mt-8" />
+          <div id="map" className="mt-4 h-[500px] w-5/6 sm:mt-6 lg:mt-8" />
         )}
       </div>
     </>
