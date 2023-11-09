@@ -21,4 +21,5 @@ public class FestivalDetailResponse {
 	private String useTrgt;
 	private String orgLink;
 	private String isFree;
+	private Integer festivalView;
 }

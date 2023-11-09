@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +29,10 @@ public class FestivalService {
         festivalRepository.save(festivalMapper.toEntity(row));
     }
 
+    @Transactional
     public FestivalDetailResponse findDetailFestival(Long id) {
         Festival festival = festivalRepository.findById(id).orElseThrow();
+        festival.updateFestivalView();
         return festivalMapper.toFindResponse(festival);
     }
 
@@ -51,5 +54,4 @@ public class FestivalService {
         int numPostByPagenation = festivals.getTotalPages();
         return festivalMapper.toFilterResponseList(festivals, numPostByPagenation);
     }
-
 }
