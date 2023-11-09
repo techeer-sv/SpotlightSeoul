@@ -91,6 +91,8 @@ public class FestivalMapper {
                 .majorCodeName(festival.getMajorCodeName())
                 .subCodeName(festival.getSubCodeName())
                 .date(festival.getDate())
+                .festivalView(festival.getFestivalView())
+                .festivalLike(festival.getFestivalLike())
                 .build();
     }
 
