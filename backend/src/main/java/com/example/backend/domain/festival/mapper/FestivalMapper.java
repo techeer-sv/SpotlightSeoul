@@ -4,6 +4,7 @@ import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
+import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
@@ -52,6 +53,7 @@ public class FestivalMapper {
                 .orgLink(festival.getOrgLink())
                 .isFree(festival.getIsFree())
                 .festivalView(festival.getFestivalView())
+                .festivalLike(festival.getFestivalLike())
                 .build();
     }
 
@@ -126,4 +128,9 @@ public class FestivalMapper {
                 .build();
     }
 
+    public FestivalLikeResponse toLike(Festival festival) {
+        return FestivalLikeResponse.builder()
+                .festivalLike(festival.getFestivalLike())
+                .build();
+    }
 }

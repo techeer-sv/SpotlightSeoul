@@ -46,6 +46,10 @@ public class Festival {
         this.festivalView++;
     }
 
+    public void updateFestivalLike() {
+        this.festivalLike++;
+    }
+
     @Builder
     public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt,
                     String date, LocalDateTime endDate,
