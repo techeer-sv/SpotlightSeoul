@@ -30,6 +30,7 @@ function MapInformation({
       },
       center: new naver.maps.LatLng(latitude, longitude),
       zoom: 16,
+      scrollWheel: false,
     };
 
     // 지도 초기화 확인
@@ -38,16 +39,19 @@ function MapInformation({
     }
 
     // Marker 생성
-    const marker = new naver.maps.Marker({
-      position: new naver.maps.LatLng(latitude, longitude),
-      map: mapInstance,
-    });
+    if (mapInstance) {
+      // mapInstance가 null이 아닐 때만 마커 생성
+      const marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(latitude, longitude),
+        map: mapInstance,
+      });
 
-    // Marker 클릭 시 지도 초기화
-    naver.maps.Event.addListener(marker, 'click', () => {
-      mapInstance?.setCenter(new naver.maps.LatLng(latitude, longitude));
-      mapInstance?.setZoom(16);
-    });
+      // Marker 클릭 시 지도 초기화
+      naver.maps.Event.addListener(marker, 'click', () => {
+        mapInstance?.setCenter(new naver.maps.LatLng(latitude, longitude));
+        mapInstance?.setZoom(16);
+      });
+    }
 
     // 지도 로드 완료
     setMapLoaded(true);
