@@ -72,8 +72,22 @@ function MainPage() {
     }
   };
 
+  // useEffect(() => {
+  //   if (
+  //     isFree === '' &&
+  //     startDate === '' &&
+  //     endDate === '' &&
+  //     field === '' &&
+  //     subField === ''
+  //   ) {
+  //     MainPostInformation();
+  //   }
+  // }, [page, isFree, startDate, endDate, field, subField]);
+
   useEffect(() => {
-    if (
+    if (searchResults.length > 0) {
+      setTest(searchResults);
+    } else if (
       isFree === '' &&
       startDate === '' &&
       endDate === '' &&
@@ -81,13 +95,7 @@ function MainPage() {
       subField === ''
     ) {
       MainPostInformation();
-    }
-  }, [page, isFree, startDate, endDate, field, subField]);
-  console.log('isFree', isFree);
-  console.log('field', field);
-
-  useEffect(() => {
-    if (
+    } else if (
       isFree !== '' ||
       startDate !== '' ||
       endDate !== '' ||
@@ -96,15 +104,29 @@ function MainPage() {
     ) {
       FilterInformation();
     }
-  }, [page, isFree, startDate, endDate, field, subField]);
+  }, [page, isFree, startDate, endDate, field, subField, searchResults]);
+  console.log('isFree', isFree);
+  console.log('field', field);
 
-  useEffect(() => {
-    if (searchResults.length > 0) {
-      setTest(searchResults);
-    } else {
-      MainPostInformation();
-    }
-  }, [page, searchResults]);
+  // useEffect(() => {
+  //   if (
+  //     isFree !== '' ||
+  //     startDate !== '' ||
+  //     endDate !== '' ||
+  //     field !== '' ||
+  //     subField !== ''
+  //   ) {
+  //     FilterInformation();
+  //   }
+  // }, [page, isFree, startDate, endDate, field, subField]);
+
+  // useEffect(() => {
+  //   if (searchResults.length > 0) {
+  //     setTest(searchResults);
+  //   } else {
+  //     MainPostInformation();
+  //   }
+  // }, [page, searchResults]);
 
   return (
     <div>
