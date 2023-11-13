@@ -10,9 +10,12 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Festival {
     @Id
@@ -34,10 +37,24 @@ public class Festival {
     private String place;
     private String title;
     private String isFree;
+    @ColumnDefault("0")
+    private Integer festivalView;
+    @ColumnDefault("0")
+    private Integer festivalLike;
+
+    public void updateFestivalView() {
+        this.festivalView++;
+    }
+
+    public void updateFestivalLike() {
+        this.festivalLike++;
+    }
 
     @Builder
-    public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt, String date, LocalDateTime endDate,
-        LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
+    public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt,
+                    String date, LocalDateTime endDate,
+                    LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place,
+                    String title, String isFree, Integer festivalView, Integer festivalLike) {
         this.majorCodeName = majorCodenName;
         this.subCodeName = subCodeName;
         this.guName = guName;
@@ -53,5 +70,7 @@ public class Festival {
         this.place = place;
         this.title = title;
         this.isFree = isFree;
+        this.festivalView = festivalView;
+        this.festivalLike = festivalLike;
     }
 }

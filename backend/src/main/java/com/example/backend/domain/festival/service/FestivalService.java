@@ -4,6 +4,7 @@ import com.example.backend.api.data.vo.FestivalRow;
 import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
+import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +30,10 @@ public class FestivalService {
         festivalRepository.save(festivalMapper.toEntity(row));
     }
 
+    @Transactional
     public FestivalDetailResponse findDetailFestival(Long id) {
         Festival festival = festivalRepository.findById(id).orElseThrow();
+        festival.updateFestivalView();
         return festivalMapper.toFindResponse(festival);
     }
 
@@ -52,4 +56,10 @@ public class FestivalService {
         return festivalMapper.toFilterResponseList(festivals, numPostByPagenation);
     }
 
+    @Transactional
+    public FestivalLikeResponse addFestivalLike(Long id) {
+        Festival festival = festivalRepository.findById(id).orElseThrow();
+        festival.updateFestivalLike();
+        return festivalMapper.toLike(festival);
+    }
 }

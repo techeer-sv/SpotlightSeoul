@@ -18,4 +18,6 @@ public class FestivalResponse {
     private String majorCodeName;
     private String subCodeName;
     private String date;
+    private Integer festivalView;
+    private Integer festivalLike;
 }
