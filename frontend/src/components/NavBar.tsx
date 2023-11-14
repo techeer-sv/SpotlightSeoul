@@ -35,31 +35,35 @@ function NavBar() {
 
   const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      try {
-        // 검색 API
-        const response = await axios.post<searchResponseData>(
-          'http://localhost:8080/api/v1/festivals',
-          { title: searchTitle },
-        );
-        const searchResponseData: searchResponseData = response.data;
+      if (searchTitle !== '') {
+        try {
+          // 검색 API
+          const response = await axios.post<searchResponseData>(
+            'http://localhost:8080/api/v1/festivals',
+            { title: searchTitle },
+          );
+          const searchResponseData: searchResponseData = response.data;
 
-        const postCardDataArray: PostCardData[] =
-          searchResponseData.post_responses.map((post) => ({
-            id: post.id,
-            org_name: post.org_name,
-            main_img: post.main_img,
-            strt_date: post.strt_date,
-            end_date: post.end_date,
-            title: post.title,
-            major_code_name: post.major_code_name,
-            date: post.date,
-          }));
+          const postCardDataArray: PostCardData[] =
+            searchResponseData.post_responses.map((post) => ({
+              id: post.id,
+              org_name: post.org_name,
+              main_img: post.main_img,
+              strt_date: post.strt_date,
+              end_date: post.end_date,
+              title: post.title,
+              major_code_name: post.major_code_name,
+              date: post.date,
+            }));
 
-        setSearchResults(postCardDataArray);
-        navigate('/');
-        window.scrollTo(0, 0);
-      } catch (error) {
-        console.log(error);
+          setSearchResults(postCardDataArray);
+          navigate('/');
+          window.scrollTo(0, 0);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert('검색어를 입력해주세요.');
       }
     }
   };
