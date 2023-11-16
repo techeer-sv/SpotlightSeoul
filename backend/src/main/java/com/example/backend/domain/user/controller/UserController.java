@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.domain.user.dto.request.UserCreateRequest;
+import com.example.backend.domain.user.dto.request.UserLoginRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.jwt.JwtResponse;
 import com.example.backend.domain.user.service.UserService;
 
 import jakarta.validation.Valid;
@@ -26,6 +28,12 @@ public class UserController {
 	public ResponseEntity<User> createUser(@Valid @RequestBody UserCreateRequest request) {
 		User newUser = userService.createUser(request);
 		return ResponseEntity.ok(newUser);
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<JwtResponse> login(@Valid @RequestBody UserLoginRequest request){
+		JwtResponse jwtResponse = userService.Login(request);
+		return ResponseEntity.ok(jwtResponse);
 	}
 
 	@GetMapping("/users/{userId}")
@@ -45,6 +53,8 @@ public class UserController {
 		userService.deleteUser(id);
 		return ResponseEntity.noContent().build();
 	}
+
+
 
 
 

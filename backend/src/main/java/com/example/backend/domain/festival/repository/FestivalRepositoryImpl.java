@@ -18,6 +18,7 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	private final JPAQueryFactory queryFactory;
@@ -37,6 +38,10 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 						.offset(pageable.getOffset())
 						.limit(pageable.getPageSize())
 						.fetchResults();
+
+		   if(results.getResults().isEmpty()){
+			   throw new NoResultException("검색결과가 없습니다.");
+		   }
 		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 		}
 
@@ -51,7 +56,7 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 				strtDateEq(response.getStrtDate()),
 				placeEq(response.getPlace()),
 				isFreeEq(response.getIsFree()),
-				titleEq(response.getTitle()))
+				titleContains(response.getTitle()))
 			.offset(pageable.getOffset())
 			.limit(pageable.getPageSize())
 			.fetchResults();
@@ -62,8 +67,8 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	private BooleanExpression guNameEq(String guName) {
 		return hasText(guName) ? festival.guName.eq(guName) : null;
 	}
-	private BooleanExpression titleEq(String title) {
-		return hasText(title) ? festival.title.eq(title) : null;
+	private BooleanExpression titleContains(String title) {
+		return hasText(title) ? festival.title.contains(title) : null;
 	}
 
 	private BooleanExpression majorCodeNameEq(String majorCodeName) {

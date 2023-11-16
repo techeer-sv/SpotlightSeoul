@@ -2,6 +2,7 @@ package com.example.backend.domain.user.entity;
 
 import org.hibernate.annotations.Where;
 
+import com.example.backend.domain.user.dto.request.UserRefreshTokenRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.global.audit.Auditable;
 import com.example.backend.global.audit.BaseTime;
@@ -41,6 +42,8 @@ public class User implements Auditable {
 	@Column(nullable = false)
 	private String location;
 
+	private String refreshToken;
+
 	@Setter
 	@Embedded
 	@Column(nullable = false)
@@ -50,11 +53,12 @@ public class User implements Auditable {
 	private boolean isDeleted = false;
 
 	@Builder
-	public User(String username, String password, String email, String location){
+	public User(String username, String password, String email, String location, String refreshToken){
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.location = location;
+		this.refreshToken = refreshToken;
 	}
 
 	public void update(UserUpdateRequest request){
@@ -62,6 +66,10 @@ public class User implements Auditable {
 		this.password = request.getPassword();
 		this.email = request.getEmail();
 		this.location = request.getLocation();
+	}
+
+	public void refreshTokenUpdate(UserRefreshTokenRequest request){
+		this.refreshToken = request.getRefreshToken();
 	}
 
 	public void softDelete() {
