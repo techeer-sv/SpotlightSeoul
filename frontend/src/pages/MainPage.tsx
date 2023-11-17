@@ -2,8 +2,9 @@ import NavBar from '../components/NavBar';
 import Banner from '../components/Banner';
 import Filter from '../components/Filter';
 import PostCard from '../components/PostCard';
-import Paging from '../components/Paging';
+// import Paging from '../components/Paging';
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useRecoilValue } from 'recoil';
 import { searchResultsState } from '../RecoilState';
 import axios from 'axios';
@@ -42,16 +43,19 @@ function MainPage() {
   const [subField, setSubField] = useState<string>('');
   const searchResults = useRecoilValue(searchResultsState);
 
+  // Intersection Observer를 위한 ref 생성
+  const [ref, inView] = useInView();
+
   // 메인페이지 PostCard API 연결
   const MainPostInformation = async () => {
     try {
-      const response = await axios
-        .get<{ total_page_num: number; post_responses: PostCardData[] }>(
-          `http://localhost:8080/api/v1/festivals/page?offset=${page}&size=20`,
-        )
-        .then((res) => res.data.post_responses);
+      const response = await axios.get<{
+        total_page_num: number;
+        post_responses: PostCardData[];
+      }>(`http://localhost:8080/api/v1/festivals/page?offset=${page}&size=60`);
+      setTest((prevPosts) => [...prevPosts, ...response.data.post_responses]);
+      setPage((prevPage) => prevPage + 1);
       console.log('main', response);
-      setTest(response);
     } catch (error) {
       console.log(error);
     }
@@ -72,22 +76,32 @@ function MainPage() {
     }
   };
 
+  // useEffect(() => {
+  //   if (
+  //     isFree === '' &&
+  //     startDate === '' &&
+  //     endDate === '' &&
+  //     field === '' &&
+  //     subField === ''
+  //   ) {
+  //     MainPostInformation();
+  //   }
+  // }, [page, isFree, startDate, endDate, field, subField]);
+
   useEffect(() => {
-    if (
+    if (searchResults.length > 0) {
+      setTest(searchResults);
+    } else if (
       isFree === '' &&
       startDate === '' &&
       endDate === '' &&
       field === '' &&
       subField === ''
     ) {
-      MainPostInformation();
-    }
-  }, [page, isFree, startDate, endDate, field, subField]);
-  console.log('isFree', isFree);
-  console.log('field', field);
-
-  useEffect(() => {
-    if (
+      if (inView) {
+        MainPostInformation();
+      }
+    } else if (
       isFree !== '' ||
       startDate !== '' ||
       endDate !== '' ||
@@ -96,15 +110,30 @@ function MainPage() {
     ) {
       FilterInformation();
     }
-  }, [page, isFree, startDate, endDate, field, subField]);
+  }, [inView, searchResults, isFree, startDate, endDate, field, subField]);
 
-  useEffect(() => {
-    if (searchResults.length > 0) {
-      setTest(searchResults);
-    } else {
-      MainPostInformation();
-    }
-  }, [page, searchResults]);
+  console.log('isFree', isFree);
+  console.log('field', field);
+
+  // useEffect(() => {
+  //   if (
+  //     isFree !== '' ||
+  //     startDate !== '' ||
+  //     endDate !== '' ||
+  //     field !== '' ||
+  //     subField !== ''
+  //   ) {
+  //     FilterInformation();
+  //   }
+  // }, [page, isFree, startDate, endDate, field, subField]);
+
+  // useEffect(() => {
+  //   if (searchResults.length > 0) {
+  //     setTest(searchResults);
+  //   } else {
+  //     MainPostInformation();
+  //   }
+  // }, [page, searchResults]);
 
   return (
     <div>
@@ -129,8 +158,8 @@ function MainPage() {
       </div> */}
 
       {/* 공연목록 */}
-      <div className="flex flex-col items-center justify-center ">
-        <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
+        <div className="mx-8 mt-2 flex w-9/12 flex-wrap items-center justify-center">
           {searchResults.length > 0
             ? searchResults.map((post) => (
                 <PostCard
@@ -159,8 +188,10 @@ function MainPage() {
                 />
               ))}
         </div>
+        {/* 감지 요소 - 스크롤이 이 요소에 도달하면 데이터를 불러옴 */}
+        <div ref={ref} />
         {/* 페이지네이션 */}
-        <Paging page={page} setPage={setPage} />
+        {/* <Paging page={page} setPage={setPage} /> */}
       </div>
     </div>
   );
