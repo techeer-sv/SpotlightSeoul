@@ -17,6 +17,8 @@ type FestivalData = {
   use_trgt: string;
   is_free: string;
   org_link: string;
+  festival_view: number;
+  festival_like: number;
 };
 
 function DetailPage() {
@@ -33,6 +35,8 @@ function DetailPage() {
   const [targetUser, setTargetUser] = useState<string>('');
   const [isFree, setIsFree] = useState<string>('');
   const [orgLink, setOrgLink] = useState<string>('');
+  const [festivalView, setFestivalView] = useState<number>(0);
+  const [festivalLike, setFestivalLike] = useState<number>(0);
 
   // 공연 대표이미지 및 세부정보 API
   const FestivalDetailInformation = async () => {
@@ -52,6 +56,8 @@ function DetailPage() {
       setTargetUser(FestivalData.use_trgt);
       setIsFree(FestivalData.is_free);
       setOrgLink(FestivalData.org_link);
+      setFestivalView(FestivalData.festival_view);
+      setFestivalLike(FestivalData.festival_like);
     } catch (error) {
       console.log(error);
     }
@@ -78,6 +84,9 @@ function DetailPage() {
           targetUser={targetUser}
           isFree={isFree}
           orgLink={orgLink}
+          festivalView={festivalView}
+          festivalLike={festivalLike}
+          festivalId={id}
         />
         {/* 위치정보 (지도) */}
         <MapInformation latitude={latitude} longitude={longitude} />
