@@ -52,7 +52,7 @@ function MainPage() {
       const response = await axios.get<{
         total_page_num: number;
         post_responses: PostCardData[];
-      }>(`http://localhost:8080/api/v1/festivals/page?offset=${page}&size=40`);
+      }>(`http://localhost:8080/api/v1/festivals/page?offset=${page}&size=60`);
       setTest((prevPosts) => [...prevPosts, ...response.data.post_responses]);
       setPage((prevPage) => prevPage + 1);
       console.log('main', response);
@@ -158,8 +158,8 @@ function MainPage() {
       </div> */}
 
       {/* 공연목록 */}
-      <div className="flex flex-col items-center justify-center ">
-        <div className="mx-8 mt-2  flex w-9/12 flex-wrap  items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
+        <div className="mx-8 mt-2 flex w-9/12 flex-wrap items-center justify-center">
           {searchResults.length > 0
             ? searchResults.map((post) => (
                 <PostCard
