@@ -52,7 +52,7 @@ public class UserService {
 
 		if(user.getRefreshToken() == null || !jwtProvider.validateToken(user.getRefreshToken())){
 			Map<String, Object> claims = new HashMap<>();
-			claims.put("userId", user.getId());
+			claims.put("id", user.getId().longValue());
 			claims.put("email", user.getEmail());
 			JwtResponse jwtResponse = jwtProvider.createJwt(claims);
 

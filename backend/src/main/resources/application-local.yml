@@ -27,3 +27,8 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+
+app:
+  auth:
+    token:
+      auth-header: Authorization

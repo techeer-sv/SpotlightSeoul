@@ -7,8 +7,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.example.backend.domain.user.dto.request.UserLoginRequest;
+
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.persistence.NoResultException;
@@ -41,9 +42,10 @@ public class JwtProvider {
 			.compact();
 	}
 
-	public boolean validateToken(String refreshToken){
+
+	public boolean validateToken(String Token){
 		try {
-			Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(refreshToken);
+			Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(Token);
 			return true;
 		} catch (Exception e){
 			return false;
@@ -60,6 +62,17 @@ public class JwtProvider {
 		return createToken(claims, getExpireDateAccessToken());
 	}
 
+	public UserTokenInfo parsingToken(String token){
+		Claims body = Jwts.parserBuilder()
+			.setSigningKey(key).build()
+			.parseClaimsJws(parseBearer(token))
+			.getBody();
+		Number idNum = body.get("id", Number.class);
+		Long id = idNum.longValue();
+		String email = body.get("email", String.class);
+		return new UserTokenInfo(id, email);
+	}
+
 
 
 	public Date getExpireDateAccessToken() {
@@ -70,5 +83,9 @@ public class JwtProvider {
 	public Date getExpireDateRefreshToken() {
 		long expireTimeMils = 1000L * 60 * 60 * 24 * 30;
 		return new Date(System.currentTimeMillis() + expireTimeMils);
+	}
+
+	private String parseBearer(String token) {
+		return token.replace("Bearer", "").trim();
 	}
 }

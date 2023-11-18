@@ -13,7 +13,9 @@ import com.example.backend.domain.user.dto.request.UserCreateRequest;
 import com.example.backend.domain.user.dto.request.UserLoginRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.jwt.JwtAuthorization;
 import com.example.backend.domain.user.jwt.JwtResponse;
+import com.example.backend.domain.user.jwt.UserTokenInfo;
 import com.example.backend.domain.user.service.UserService;
 
 import jakarta.validation.Valid;
@@ -37,7 +39,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+	public ResponseEntity<User> getUser(@PathVariable Long userId, @JwtAuthorization UserTokenInfo userInfo) {
 		User foundUser = userService.findUser(userId);
 		return ResponseEntity.ok(foundUser);
 	}
