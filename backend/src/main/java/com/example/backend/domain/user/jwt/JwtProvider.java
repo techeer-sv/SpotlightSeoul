@@ -23,7 +23,7 @@ public class JwtProvider {
 
 	public JwtResponse createJwt(Map<String, Object> claims) {
 		String accessToken = createToken(claims, getExpireDateAccessToken());
-		String refreshToken = createToken(new HashMap<>(), getExpireDateRefreshToken());
+		String refreshToken = createToken(claims, getExpireDateRefreshToken());
 		return JwtResponse.builder()
 			.accessToken(accessToken)
 			.refreshToken(refreshToken)

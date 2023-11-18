@@ -60,11 +60,11 @@ public class UserService {
 			user.refreshTokenUpdate(new UserRefreshTokenRequest(jwtResponse.getRefreshToken()));
 			userRepository.save(user);
 
-			return jwtResponse;
+			return new JwtResponse(jwtResponse.getAccessToken(), null);
 
 		}else {
 			String newAccessToken = jwtProvider.refreshTokenTOAccess(user.getRefreshToken());
-			return new JwtResponse(newAccessToken, user.getRefreshToken());
+			return new JwtResponse(newAccessToken, null);
 		}
 	}
 
