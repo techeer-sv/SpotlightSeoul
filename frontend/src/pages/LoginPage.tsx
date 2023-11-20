@@ -1,6 +1,9 @@
 import signImg from '../assets/images/png/signImg.png';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-loginimg w-full bg-[#F5F5F6]">
       <div className="flex  font-LexendDeca">
@@ -23,7 +26,12 @@ function LoginPage() {
           <button className="rounded-md bg-[#06439F] py-2 font-light text-white">
             Login
           </button>
-          <button className="rounded-md border border-[#06439F] bg-[#ffffff] py-2 font-light text-[#06439F]">
+          <button
+            className="rounded-md border border-[#06439F] bg-[#ffffff] py-2 font-light text-[#06439F]"
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
             Sign up
           </button>
         </div>

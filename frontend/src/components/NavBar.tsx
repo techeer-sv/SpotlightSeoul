@@ -95,6 +95,17 @@ function NavBar() {
             onKeyDown={handleKeyDown}
           />
         </div>
+        <button
+          onClick={() => {
+            navigate('/login');
+          }}
+          className="duration-400 rounded-md border-2 border-[#06439F] px-3 py-2 font-LexendDeca text-[#06439F] hover:border-[#06439F] hover:bg-[#f7f7f7]"
+        >
+          Login
+        </button>
+        {/* <button className="duration-400 rounded-md border-2 border-[#FFDB59] px-3 py-2 font-LexendDeca text-[#FFDB59] hover:border-[#EDC431] hover:bg-[#fffdfd] hover:text-[#EDC431]">
+          Logout
+        </button> */}
         <div className="flex basis-1/4" />
       </div>
     </div>
