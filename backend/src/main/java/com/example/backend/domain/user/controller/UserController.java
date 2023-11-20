@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.domain.user.dto.request.UserCreateRequest;
+import com.example.backend.domain.user.dto.request.UserLoginRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.jwt.JwtAccessTokenResponse;
+import com.example.backend.domain.user.jwt.JwtAuthorization;
+import com.example.backend.domain.user.jwt.JwtResponse;
+import com.example.backend.domain.user.jwt.UserTokenInfo;
 import com.example.backend.domain.user.service.UserService;
 
 import jakarta.validation.Valid;
@@ -28,8 +33,14 @@ public class UserController {
 		return ResponseEntity.ok(newUser);
 	}
 
+	@PostMapping("/login")
+	public ResponseEntity<JwtAccessTokenResponse> login(@Valid @RequestBody UserLoginRequest request){
+		JwtAccessTokenResponse jwtResponse = userService.Login(request);
+		return ResponseEntity.ok(jwtResponse);
+	}
+
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+	public ResponseEntity<User> getUser(@PathVariable Long userId, @JwtAuthorization UserTokenInfo userInfo) {
 		User foundUser = userService.findUser(userId);
 		return ResponseEntity.ok(foundUser);
 	}
@@ -45,6 +56,8 @@ public class UserController {
 		userService.deleteUser(id);
 		return ResponseEntity.noContent().build();
 	}
+
+
 
 
 
