@@ -10,6 +10,7 @@ import com.example.backend.domain.user.dto.request.UserLoginRequest;
 import com.example.backend.domain.user.dto.request.UserRefreshTokenRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.jwt.JwtAccessTokenResponse;
 import com.example.backend.domain.user.jwt.JwtProvider;
 import com.example.backend.domain.user.jwt.JwtResponse;
 import com.example.backend.domain.user.mapper.UserMapper;
@@ -46,7 +47,7 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	public JwtResponse Login(UserLoginRequest request){
+	public JwtAccessTokenResponse Login(UserLoginRequest request){
 		User user = userRepository.findByEmailAndPassword(request.getEmail(), request.getPassword())
 			.orElseThrow(() -> new RuntimeException("사용자가 없습니다."));
 
@@ -60,11 +61,11 @@ public class UserService {
 			user.refreshTokenUpdate(new UserRefreshTokenRequest(jwtResponse.getRefreshToken()));
 			userRepository.save(user);
 
-			return new JwtResponse(jwtResponse.getAccessToken(), null);
+			return new JwtAccessTokenResponse(jwtResponse.getAccessToken());
 
 		}else {
 			String newAccessToken = jwtProvider.refreshTokenTOAccess(user.getRefreshToken());
-			return new JwtResponse(newAccessToken, null);
+			return new JwtAccessTokenResponse(newAccessToken);
 		}
 	}
 

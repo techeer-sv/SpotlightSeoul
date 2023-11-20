@@ -13,6 +13,7 @@ import com.example.backend.domain.user.dto.request.UserCreateRequest;
 import com.example.backend.domain.user.dto.request.UserLoginRequest;
 import com.example.backend.domain.user.dto.request.UserUpdateRequest;
 import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.jwt.JwtAccessTokenResponse;
 import com.example.backend.domain.user.jwt.JwtAuthorization;
 import com.example.backend.domain.user.jwt.JwtResponse;
 import com.example.backend.domain.user.jwt.UserTokenInfo;
@@ -33,8 +34,8 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<JwtResponse> login(@Valid @RequestBody UserLoginRequest request){
-		JwtResponse jwtResponse = userService.Login(request);
+	public ResponseEntity<JwtAccessTokenResponse> login(@Valid @RequestBody UserLoginRequest request){
+		JwtAccessTokenResponse jwtResponse = userService.Login(request);
 		return ResponseEntity.ok(jwtResponse);
 	}
 
