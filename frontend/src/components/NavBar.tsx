@@ -72,7 +72,7 @@ function NavBar() {
     <div className="sticky top-0 z-50">
       <div className="flex h-14 w-full items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
         {/* 로고 */}
-        <div className="flex basis-1/4">
+        <div className="flex basis-1/4 justify-center">
           <button
             className="ml-5 text-left font-LexendDeca text-xl font-bold md:text-2xl"
             type="button"
@@ -95,18 +95,19 @@ function NavBar() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <button
-          onClick={() => {
-            navigate('/login');
-          }}
-          className="duration-400 rounded-md border-2 border-[#06439F] px-3 py-2 font-LexendDeca text-[#06439F] hover:border-[#06439F] hover:bg-[#f7f7f7]"
-        >
-          Login
-        </button>
-        {/* <button className="duration-400 rounded-md border-2 border-[#FFDB59] px-3 py-2 font-LexendDeca text-[#FFDB59] hover:border-[#EDC431] hover:bg-[#fffdfd] hover:text-[#EDC431]">
+        <div className="flex basis-1/4 justify-center">
+          <button
+            onClick={() => {
+              navigate('/login');
+            }}
+            className="duration-400 rounded-md border-2 border-[#06439F] px-3 py-2 font-LexendDeca text-[#06439F] hover:border-[#06439F] hover:bg-[#f7f7f7]"
+          >
+            Login
+          </button>
+          {/* <button className="duration-400 rounded-md border-2 border-[#FFDB59] px-3 py-2 font-LexendDeca text-[#FFDB59] hover:border-[#EDC431] hover:bg-[#fffdfd] hover:text-[#EDC431]">
           Logout
         </button> */}
-        <div className="flex basis-1/4" />
+        </div>
       </div>
     </div>
   );
