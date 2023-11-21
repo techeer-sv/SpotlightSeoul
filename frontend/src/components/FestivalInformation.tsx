@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
+import ViewIcon from '../assets/images/png/ViewIcon.png';
+import LikeUnclicked from '../assets/images/svg/Favorite.svg';
+import LikeClicked from '../assets/images/svg/Favorite_fill.svg';
 
 type FestivalInformationProps = {
   mainImg: string;
@@ -13,7 +16,7 @@ type FestivalInformationProps = {
   orgLink: string;
   festivalView: number;
   festivalLike: number;
-  festivalId: number;
+  festivalId: string | undefined;
 };
 
 type PostLike = {
@@ -70,23 +73,38 @@ function FestivalInformation({
               {subCodeName}
             </span>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
+            <img src={ViewIcon} alt="view icon" className="mr-1 h-7 w-7" />
+            <span className="mr-3 font-Pretendard text-base">
+              {festivalView}
+            </span>
             {!likeClicked ? (
-              <span
-                className="mr-3 hover:cursor-pointer hover:underline"
+              <div
+                className="flex items-center hover:cursor-pointer hover:underline"
                 onClick={() => {
                   plusLike();
                   setLikeClicked(true);
                 }}
               >
-                좋아요 {festivalLike}
-              </span>
+                <img
+                  src={LikeUnclicked}
+                  alt="like clicked"
+                  className="mr-1 h-6 w-6"
+                />
+                <span className="font-Pretendard text-base">
+                  {festivalLike}
+                </span>
+              </div>
             ) : (
-              <span className="mr-3 hover:cursor-pointer hover:underline">
-                좋아요 {updatedLike}
-              </span>
+              <div className="flex items-center hover:cursor-pointer hover:underline">
+                <img
+                  src={LikeClicked}
+                  alt="like clicked"
+                  className="mr-1 h-6 w-6"
+                />
+                <span className="font-Pretendard text-base">{updatedLike}</span>
+              </div>
             )}
-            <span>조회수 {festivalView}</span>
           </div>
         </div>
         {/* 제목 */}
