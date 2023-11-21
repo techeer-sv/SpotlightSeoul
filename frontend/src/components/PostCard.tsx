@@ -65,7 +65,15 @@ function PostCard({
         </div>
 
         {/* 공연명 */}
-        <p className="mt-4 text-left font-LexendDeca text-sm font-bold">
+        <p
+          className="mt-4 text-left font-LexendDeca text-sm font-bold"
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {title}
         </p>
         {/* 공연 기간 */}
