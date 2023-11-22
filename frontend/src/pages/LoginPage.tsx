@@ -1,15 +1,20 @@
-import signImg from '../assets/images/png/signImg.png';
+import LogoImg from '../assets/images/png/Logo.png';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-loginimg w-full bg-[#F5F5F6]">
-      <div className="flex  font-LexendDeca">
-        <img src={signImg} alt="login" className="h-full" />
-
-        <div className="flex w-72 flex-col justify-center space-y-4">
+    <div className="bg-loginimg w-full bg-[#fdfdfd]">
+      <div className="flex justify-center">
+        <div className="">
+          <img
+            src={LogoImg}
+            alt="login"
+            className="flex max-h-screen items-center justify-center"
+          />
+        </div>
+        <div className="ml-10 flex w-72 flex-col justify-center space-y-4 font-LexendDeca">
           <div className="mb-3 text-[30pt] font-medium text-[#06439F]">
             Login
           </div>
