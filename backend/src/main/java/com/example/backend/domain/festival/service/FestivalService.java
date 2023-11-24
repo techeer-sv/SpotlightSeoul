@@ -6,7 +6,6 @@ import com.example.backend.domain.festival.dto.response.FestivalFilterPageRespon
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
 import com.example.backend.domain.festival.dto.response.FestivalMostPageResponse;
-import com.example.backend.domain.festival.dto.response.FestivalMostResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -88,15 +87,15 @@ public class FestivalService {
         }
     }
 
-    public FestivalMostPageResponse mostLike(Integer festivalLike, Pageable page){
-        Page<Festival> festivals = festivalRepository.mostLike(festivalLike,page);
+    public FestivalMostPageResponse mostLike(Integer festivalLike, Pageable page) {
+        Page<Festival> festivals = festivalRepository.mostLike(festivalLike, page);
         int numPostByPagenation = festivals.getTotalPages();
-        return  festivalMapper.toMostList(festivals, numPostByPagenation);
+        return festivalMapper.toMostList(festivals, numPostByPagenation);
     }
 
-    public FestivalMostPageResponse mostView(Integer festivalView, Pageable page){
-        Page<Festival> festivals = festivalRepository.mostView(festivalView,page);
+    public FestivalMostPageResponse mostView(Integer festivalView, Pageable page) {
+        Page<Festival> festivals = festivalRepository.mostView(festivalView, page);
         int numPostByPagenation = festivals.getTotalPages();
-        return  festivalMapper.toMostList(festivals, numPostByPagenation);
+        return festivalMapper.toMostList(festivals, numPostByPagenation);
     }
 }

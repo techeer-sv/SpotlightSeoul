@@ -13,5 +13,6 @@ public interface FestivalRepositoryCustom {
 	Page<Festival> findByTitleKeyword(String keyword, Pageable pageable);
 
 	Page<Festival> mostView(Integer festivalView, Pageable pageable);
+
 	Page<Festival> mostLike(Integer festivalLike, Pageable pageable);
 }
