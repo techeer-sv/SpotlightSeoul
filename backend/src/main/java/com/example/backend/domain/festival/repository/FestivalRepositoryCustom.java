@@ -11,4 +11,7 @@ public interface FestivalRepositoryCustom {
 	Page<Festival> filter(FestivalFilterSearchResponse response, Pageable pageable);
 
 	Page<Festival> findByTitleKeyword(String keyword, Pageable pageable);
+
+	Page<Festival> mostView(Integer festivalView, Pageable pageable);
+	Page<Festival> mostLike(Integer festivalLike, Pageable pageable);
 }

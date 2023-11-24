@@ -45,6 +45,7 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 		}
 
+
 	@Override
 	public Page<Festival> filter(FestivalFilterSearchResponse response, Pageable pageable){
 		QueryResults<Festival> results = queryFactory
@@ -93,6 +94,34 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 
 	private BooleanExpression isFreeEq(String isFree) {
 		return hasText(isFree) ? festival.isFree.eq(isFree) : null;
+	}
+
+	@Override
+	public Page<Festival> mostView(Integer festivalView, Pageable pageable){
+		BooleanExpression predicate = festivalView != null ? festival.festivalLike.gt(festivalView) : null;
+		QueryResults<Festival> results = queryFactory
+			.selectFrom(festival)
+			.where(predicate)
+			.orderBy(festival.festivalView.desc())
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.fetchResults();
+
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+	}
+
+	@Override
+	public Page<Festival> mostLike(Integer festivalLike, Pageable pageable){
+		BooleanExpression predicate = festivalLike != null ? festival.festivalLike.gt(festivalLike) : null;
+		QueryResults<Festival> results = queryFactory
+			.selectFrom(festival)
+			.where(predicate)
+			.orderBy(festival.festivalLike.desc())
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.fetchResults();
+
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 	}
 
 }
