@@ -42,3 +42,9 @@ app:
   auth:
     token:
       auth-header: Authorization
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
