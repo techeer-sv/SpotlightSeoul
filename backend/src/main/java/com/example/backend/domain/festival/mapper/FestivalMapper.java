@@ -5,6 +5,8 @@ import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterResponse;
 import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
+import com.example.backend.domain.festival.dto.response.FestivalMostPageResponse;
+import com.example.backend.domain.festival.dto.response.FestivalMostResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
@@ -135,4 +137,28 @@ public class FestivalMapper {
                 .festivalLike(festival.getFestivalLike())
                 .build();
     }
+
+    public FestivalMostResponse toMost(Festival festival){
+        return FestivalMostResponse.builder()
+            .id(festival.getId())
+            .orgName(festival.getOrgName())
+            .mainImg(festival.getMainImg())
+            .title(festival.getTitle())
+            .majorCodeName(festival.getMajorCodeName())
+            .subCodeName(festival.getSubCodeName())
+            .date(festival.getDate())
+            .festivalView(festival.getFestivalView())
+            .festivalLike(festival.getFestivalLike())
+            .build();
+    }
+
+    public FestivalMostPageResponse toMostList(Page<Festival> festivals, int numPostByPagenation){
+        List<FestivalMostResponse> festivalMostLikeResponseList =
+            festivals.stream().map(this::toMost).toList();
+        return FestivalMostPageResponse.builder()
+            .totalPageNum(numPostByPagenation)
+            .postResponses(festivalMostLikeResponseList)
+            .build();
+    }
+
 }

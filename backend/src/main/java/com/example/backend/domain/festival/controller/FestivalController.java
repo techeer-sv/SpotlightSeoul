@@ -6,6 +6,8 @@ import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
+import com.example.backend.domain.festival.dto.response.FestivalMostPageResponse;
+import com.example.backend.domain.festival.dto.response.FestivalMostResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.service.FestivalService;
@@ -66,5 +68,17 @@ public class FestivalController {
     public ResponseEntity<FestivalLikeResponse> addFestivalLike(@PathVariable Long id) {
 		FestivalLikeResponse festivalLikeResponse = festivalService.addFestivalLike(id);
         return ResponseEntity.ok(festivalLikeResponse);
+    }
+
+    @GetMapping("/likes")
+    public ResponseEntity<FestivalMostPageResponse> mostLikesFestivals(Integer likes, @PageableDefault(size = 20) Pageable page){
+        FestivalMostPageResponse likesResults = festivalService.mostLike(likes, page);
+        return  ResponseEntity.ok(likesResults);
+    }
+
+    @GetMapping("/views")
+    public ResponseEntity<FestivalMostPageResponse> mostViewsFestivals(Integer views, @PageableDefault(size = 20) Pageable page){
+        FestivalMostPageResponse viewsResults = festivalService.mostView(views, page);
+        return  ResponseEntity.ok(viewsResults);
     }
 }
