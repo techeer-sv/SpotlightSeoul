@@ -10,6 +10,8 @@ import com.example.backend.domain.festival.dto.response.FestivalSearchPageRespon
 import com.example.backend.domain.festival.entity.Festival;
 import com.example.backend.domain.festival.mapper.FestivalMapper;
 import com.example.backend.domain.festival.repository.FestivalRepository;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,9 +28,21 @@ public class FestivalService {
     FestivalRepository festivalRepository;
     FestivalMapper festivalMapper;
 
-    public void saveFestival(FestivalRow row) {
-        festivalRepository.save(festivalMapper.toEntity(row));
+
+    public void saveFestivalAllRows(List<FestivalRow> festivalRows) {
+        List<Festival> festivals = festivalMapper.toEntityList(festivalRows);
+        festivalRepository.saveAll(festivals);
     }
+
+
+    public void updateFestival(FestivalRow row) {
+        int matchRow = festivalRepository.findByTitle(row.getTitle()).size();
+
+        if (matchRow == 0) {
+            festivalRepository.save(festivalMapper.toEntity(row));
+        }
+    }
+
 
     @Transactional
     public FestivalDetailResponse findDetailFestival(Long id) {
@@ -61,5 +75,14 @@ public class FestivalService {
         Festival festival = festivalRepository.findById(id).orElseThrow();
         festival.updateFestivalLike();
         return festivalMapper.toLike(festival);
+    }
+
+    @Transactional
+    public void endFestivalByOverDate() {
+        LocalDateTime now = LocalDateTime.now();
+        List<Festival> festivalsToUpdate = festivalRepository.findByEndDateBeforeAndIsEndNull(now);
+        for (Festival festival : festivalsToUpdate) {
+            festival.end();
+        }
     }
 }

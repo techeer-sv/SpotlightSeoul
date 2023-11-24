@@ -135,4 +135,8 @@ public class FestivalMapper {
                 .festivalLike(festival.getFestivalLike())
                 .build();
     }
+
+    public List<Festival> toEntityList(List<FestivalRow> festivalRows) {
+        return festivalRows.stream().map(this::toEntity).toList();
+    }
 }
