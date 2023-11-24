@@ -5,6 +5,7 @@ import com.example.backend.domain.festival.dto.response.FestivalDetailResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalFilterSearchResponse;
 import com.example.backend.domain.festival.dto.response.FestivalLikeResponse;
+import com.example.backend.domain.festival.dto.response.FestivalMostPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalPageResponse;
 import com.example.backend.domain.festival.dto.response.FestivalSearchPageResponse;
 import com.example.backend.domain.festival.entity.Festival;
@@ -84,5 +85,17 @@ public class FestivalService {
         for (Festival festival : festivalsToUpdate) {
             festival.end();
         }
+    }
+
+    public FestivalMostPageResponse mostLike(Integer festivalLike, Pageable page) {
+        Page<Festival> festivals = festivalRepository.mostLike(festivalLike, page);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toMostList(festivals, numPostByPagenation);
+    }
+
+    public FestivalMostPageResponse mostView(Integer festivalView, Pageable page) {
+        Page<Festival> festivals = festivalRepository.mostView(festivalView, page);
+        int numPostByPagenation = festivals.getTotalPages();
+        return festivalMapper.toMostList(festivals, numPostByPagenation);
     }
 }
