@@ -35,7 +35,7 @@ services:
     tty: true
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
     restart: on-failure
     ports:
@@ -43,10 +43,10 @@ services:
     networks:
       - app-tier
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - .././prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     container_name: grafana
     restart: on-failure
     ports:
