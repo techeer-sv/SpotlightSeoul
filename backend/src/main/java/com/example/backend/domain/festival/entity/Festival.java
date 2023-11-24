@@ -12,11 +12,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Where;
 
 @Getter
 @Entity
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Where(clause = "is_end is null")
 public class Festival {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +43,7 @@ public class Festival {
     private Integer festivalView;
     @ColumnDefault("0")
     private Integer festivalLike;
+    private Boolean isEnd;
 
     public void updateFestivalView() {
         this.festivalView++;
@@ -48,6 +51,10 @@ public class Festival {
 
     public void updateFestivalLike() {
         this.festivalLike++;
+    }
+
+    public void end() {
+        this.isEnd = true;
     }
 
     @Builder
