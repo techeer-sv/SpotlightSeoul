@@ -1,6 +1,6 @@
 <div align =center>
 <br>
-  <img width="55%" src="https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/dbadb37f-f530-42d9-abd6-bd531ddad919">
+  <img width="45%" src="https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/dbadb37f-f530-42d9-abd6-bd531ddad919">
 
 
   </div>
@@ -9,16 +9,44 @@
 
 <div align = "center">
 
-<h3>  SpotlightSeoul, 서울 문화행사 정보는 모두 여기에!</h3>
+<h3>✨ 서울 곳곳의 문화행사를 비추는 SpotlightSeoul ✨</h3>
+
+## 
+<br>
+
+**SpotlightSeoul은 서울의 문화행사를 한눈에 보여주는 플랫폼**으로,<br>
+<br>
+서울 곳곳의 행사를 비추어 다채로운 문화를 즐길 수 있도록 돕는 것을 목표로 하고 있습니다.<br>
+<br>
 </div>
 
 <br> <br> <br>
 
-##  Introduction
+## Introduction
+##### 메인 페이지
+![apdls](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/1b15988d-2f88-4830-ab6f-e3d8d4f690a4)
+<br>
+
+##### 필터 기능
+![핉터터](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/fa519206-b53c-4bd1-b7b3-478783c562fa)
+<br>
+
+##### 상세 페이지
+![사상ㅇ세](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/a7fa8f61-a198-49ba-8f8a-c65b60feb836)
+<br>
+
+##### 로그인 페이지
+![로그인변환](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/ef4f55a9-6a60-4b64-9bfd-6fc302ca7c69)
+<br>
+
+##### 회원가입 페이지
+![회원가입변환](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/516f63f2-0f6b-408c-9f76-6205c4a5c4c6)
+
 
 <br> <br>
 
 ## System Architecture
+![시스템 아키텍쳐](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/43f1f6d6-1a86-45c4-b8a1-c621bab188cf)
 
 <br> <br>
 
