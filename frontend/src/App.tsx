@@ -3,7 +3,8 @@ import { RecoilRoot } from 'recoil';
 import MainPage from './pages/MainPage';
 import DetailPage from './pages/DetailPage';
 import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignUpPage';
+import SignupPage from './pages/SignupPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </RecoilRoot>
   );

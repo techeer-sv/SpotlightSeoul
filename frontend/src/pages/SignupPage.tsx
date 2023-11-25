@@ -2,7 +2,7 @@ import LogoImg from '../assets/images/png/Logo.png';
 
 function SignupPage() {
   return (
-    <div className="bg-loginimg w-full bg-[#fdfdfd]">
+    <div className="bg-loginimg w-full bg-[#ffffff]">
       <div className="flex justify-center font-LexendDeca">
         <img
           src={LogoImg}
