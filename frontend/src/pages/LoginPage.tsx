@@ -1,15 +1,19 @@
-import LogoImg from '../assets/images/png/Logo.png';
+import LoginImg from '../assets/images/png/LoginImg.png';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate();
+
+  function toSignup() {
+    navigate('/signup');
+  }
 
   return (
     <div className="bg-loginimg w-full bg-[#fdfdfd]">
       <div className="flex justify-center">
         <div className="">
           <img
-            src={LogoImg}
+            src={LoginImg}
             alt="login"
             className="flex max-h-screen items-center justify-center"
           />
@@ -33,9 +37,7 @@ function LoginPage() {
           </button>
           <button
             className="rounded-md border border-[#06439F] bg-[#ffffff] py-2 font-light text-[#06439F]"
-            onClick={() => {
-              navigate('/signup');
-            }}
+            onClick={() => toSignup()}
           >
             Sign up
           </button>

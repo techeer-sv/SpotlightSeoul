@@ -1,11 +1,50 @@
-import LogoImg from '../assets/images/png/Logo.png';
+import LoginImg from '../assets/images/png/LoginImg.png';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+
+type data = {
+  nickname: string;
+  id: string;
+  password: string;
+};
 
 function SignupPage() {
+  const navigate = useNavigate();
+
+  function toLogin() {
+    navigate('/login');
+  }
+
+  // const handleSignUp = async () => {
+  //   try {
+  //     const data = {
+  //       nickname,
+  //       id,
+  //       password,
+  //     };
+  //     console.log(data);
+  //     const response = await axios.post(
+  //       'http://localhost:8080/api/v1/users',
+  //       data,
+  //     );
+  //     console.log(response.status); // 실제 반환되는 상태 코드 확인
+  //     // 응답 확인
+  //     if (response.status === 201) {
+  //       alert('회원가입 성공!');
+  //       toLogin();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert('회원가입 실패!');
+  //   }
+  // };
+
   return (
     <div className="bg-loginimg w-full bg-[#fdfdfd]">
       <div className="flex justify-center font-LexendDeca">
         <img
-          src={LogoImg}
+          src={LoginImg}
           alt="signup"
           className="flex max-h-screen items-center justify-center"
         />

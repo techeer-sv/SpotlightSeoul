@@ -15,3 +15,20 @@ export const searchResultsState = atom<PostCardData[]>({
   key: 'searchResultsState',
   default: [],
 });
+
+const nicknameState = atom<string>({
+  key: 'nicknameState',
+  default: '',
+});
+
+const idState = atom<string>({
+  key: 'idState',
+  default: '',
+});
+
+const passwordState = atom<string>({
+  key: 'passwordState',
+  default: '',
+});
+
+export { nicknameState, idState, passwordState };

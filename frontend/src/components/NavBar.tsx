@@ -1,5 +1,6 @@
 import '../index.css';
 import magnifier from '../assets/images/svg/magnifier.svg';
+import LogoImg from '../assets/images/png/Logo.png';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -82,6 +83,7 @@ function NavBar() {
           >
             <span className="text-[#06439F]">Spotlight</span>
             <span className="text-[#FFD600]">Seoul</span>
+            {/* <img src={LogoImg} alt="login" className="w-32" /> */}
           </button>
         </div>
         {/* 검색창 */}
@@ -95,7 +97,7 @@ function NavBar() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <div className="flex basis-1/4 justify-center">
+        <div className="mr-10 flex basis-1/4 justify-end">
           <button
             onClick={() => {
               navigate('/login');
