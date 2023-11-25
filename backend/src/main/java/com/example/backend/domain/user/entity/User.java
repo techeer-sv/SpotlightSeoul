@@ -39,8 +39,6 @@ public class User implements Auditable {
 	@Column(nullable = false)
 	private String email;
 
-	@Column(nullable = false)
-	private String location;
 
 	private String refreshToken;
 
@@ -53,11 +51,10 @@ public class User implements Auditable {
 	private boolean isDeleted = false;
 
 	@Builder
-	public User(String username, String password, String email, String location, String refreshToken){
+	public User(String username, String password, String email, String refreshToken){
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.location = location;
 		this.refreshToken = refreshToken;
 	}
 
@@ -65,7 +62,6 @@ public class User implements Auditable {
 		this.username = request.getUsername();
 		this.password = request.getPassword();
 		this.email = request.getEmail();
-		this.location = request.getLocation();
 	}
 
 	public void refreshTokenUpdate(UserRefreshTokenRequest request){

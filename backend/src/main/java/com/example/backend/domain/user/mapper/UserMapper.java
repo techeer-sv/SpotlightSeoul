@@ -16,7 +16,6 @@ public class UserMapper {
 			.username(request.getUsername())
 			.password(request.getPassword())
 			.email(request.getEmail())
-			.location(request.getLocation())
 			.build();
 	}
 
@@ -38,7 +37,6 @@ public class UserMapper {
 			.id(user.getId())
 			.username(user.getUsername())
 			.email(user.getEmail())
-			.location(user.getLocation())
 			.build();
 	}
 
