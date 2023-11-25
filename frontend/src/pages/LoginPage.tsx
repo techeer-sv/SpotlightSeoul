@@ -5,7 +5,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-loginimg w-full bg-[#fdfdfd]">
+    <div className="bg-loginimg w-full bg-[#ffffff]">
       <div className="flex justify-center">
         <div className="">
           <img
