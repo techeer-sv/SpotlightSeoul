@@ -1,3 +1,28 @@
+import axios from 'axios';
+import { useState } from 'react';
+import ViewIcon from '../assets/images/png/ViewIcon.png';
+import LikeUnclicked from '../assets/images/svg/Favorite.svg';
+import LikeClicked from '../assets/images/svg/Favorite_fill.svg';
+
+type FestivalInformationProps = {
+  mainImg: string;
+  majorCodeName: string;
+  subCodeName: string;
+  place: string;
+  title: string;
+  date: string;
+  targetUser: string;
+  isFree: string;
+  orgLink: string;
+  festivalView: number;
+  festivalLike: number;
+  festivalId: string | undefined;
+};
+
+type PostLike = {
+  festival_like: number;
+};
+
 function FestivalInformation({
   mainImg,
   majorCodeName,
@@ -8,17 +33,26 @@ function FestivalInformation({
   targetUser,
   isFree,
   orgLink,
-}: {
-  mainImg: string;
-  majorCodeName: string;
-  subCodeName: string;
-  place: string;
-  title: string;
-  date: string;
-  targetUser: string;
-  isFree: string;
-  orgLink: string;
-}) {
+  festivalView,
+  festivalLike,
+  festivalId,
+}: FestivalInformationProps) {
+  const [updatedLike, setUpdatedLike] = useState<number>(festivalLike);
+  const [likeClicked, setLikeClicked] = useState<boolean>(false);
+
+  const plusLike = async () => {
+    try {
+      const response = await axios.put<PostLike>(
+        `http://localhost:8080/api/v1/festivals/likes/${festivalId}`,
+      );
+      const LikeData: PostLike = response.data;
+      setUpdatedLike(LikeData.festival_like);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mx-0 mt-14 flex h-auto w-11/12 max-w-[1400px] items-start justify-between">
       {/* 대표이미지 */}
@@ -30,13 +64,48 @@ function FestivalInformation({
       {/* 공연 세부정보 */}
       <div className="flex w-6/12 flex-shrink flex-col items-start">
         {/* 공연 분류 */}
-        <div className="flex items-center">
-          <div className="mr-2 flex h-4 w-10 items-center justify-center rounded-sm bg-[#7EB2FF] text-center font-Pretendard text-[10px] font-bold sm:h-5 sm:w-12 sm:rounded-md sm:text-xs md:h-6 md:rounded-lg lg:h-8 lg:w-16 lg:text-base xl:h-9 xl:w-20 xl:rounded-xl xl:text-lg 2xl:h-11 2xl:w-24 2xl:rounded-2xl 2xl:text-xl">
-            {majorCodeName}
+        <div className="flex w-full items-center justify-between">
+          <div className="flex items-center">
+            <div className="mr-2 flex h-4 w-10 items-center justify-center rounded-sm bg-[#7EB2FF] text-center font-Pretendard text-[10px] font-bold sm:h-5 sm:w-12 sm:rounded-md sm:text-xs md:h-6 md:rounded-lg lg:h-8 lg:w-16 lg:text-base xl:h-9 xl:w-20 xl:rounded-xl xl:text-lg 2xl:h-11 2xl:w-24 2xl:rounded-2xl 2xl:text-xl">
+              {majorCodeName}
+            </div>
+            <span className="flex text-center font-Pretendard text-[10px] font-bold text-[#06439F] sm:text-xs lg:text-sm xl:text-base 2xl:text-lg">
+              {subCodeName}
+            </span>
           </div>
-          <span className="flex text-center font-Pretendard text-[10px] font-bold text-[#06439F] sm:text-xs lg:text-sm xl:text-base 2xl:text-lg">
-            {subCodeName}
-          </span>
+          <div className="flex items-center">
+            <img src={ViewIcon} alt="view icon" className="mr-1 h-7 w-7" />
+            <span className="mr-3 font-Pretendard text-base">
+              {festivalView}
+            </span>
+            {!likeClicked ? (
+              <div
+                className="flex items-center hover:cursor-pointer hover:underline"
+                onClick={() => {
+                  plusLike();
+                  setLikeClicked(true);
+                }}
+              >
+                <img
+                  src={LikeUnclicked}
+                  alt="like clicked"
+                  className="mr-1 h-6 w-6"
+                />
+                <span className="font-Pretendard text-base">
+                  {festivalLike}
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center hover:cursor-pointer hover:underline">
+                <img
+                  src={LikeClicked}
+                  alt="like clicked"
+                  className="mr-1 h-6 w-6"
+                />
+                <span className="font-Pretendard text-base">{updatedLike}</span>
+              </div>
+            )}
+          </div>
         </div>
         {/* 제목 */}
         <span className="mt-2 font-Pretendard text-xs font-bold sm:mt-3 sm:text-sm md:mt-4 md:text-base lg:mt-6 lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10 2xl:text-2xl">
