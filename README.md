@@ -11,7 +11,7 @@
 
 <h3>✨ 서울 곳곳의 문화행사를 비추는 SpotlightSeoul ✨</h3>
 
-## 
+
 <br>
 
 **SpotlightSeoul은 서울의 문화행사를 한눈에 보여주는 플랫폼**으로,<br>
@@ -22,7 +22,7 @@
 
 <br> <br> <br>
 
-## Introduction
+## 🚀 Introduction
 ##### 메인 페이지
 ![apdls](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/1b15988d-2f88-4830-ab6f-e3d8d4f690a4)
 <br>
@@ -45,12 +45,12 @@
 
 <br> <br>
 
-## System Architecture
+## 💡 System Architecture
 ![시스템 아키텍쳐](https://github.com/techeer-sv/SpotlightSeoul/assets/97724189/43f1f6d6-1a86-45c4-b8a1-c621bab188cf)
 
 <br> <br>
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 Area| Tech Stack|
 :--------:|:------------------------------:|
