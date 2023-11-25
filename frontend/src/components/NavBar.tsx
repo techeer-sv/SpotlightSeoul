@@ -70,7 +70,7 @@ function NavBar() {
 
   return (
     <div className="sticky top-0 z-50">
-      <div className="flex h-14 w-full items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
+      <div className="flex h-14 w-screen items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
         {/* 로고 */}
         <div className="flex basis-1/4 justify-center">
           <button
