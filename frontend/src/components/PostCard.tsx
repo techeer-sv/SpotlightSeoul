@@ -44,7 +44,7 @@ function PostCard({
     >
       <button
         type="button"
-        className="mx-4 my-6 h-80 w-[180px] rounded-[10px] border border-[#434343] bg-white px-3"
+        className="mx-4 my-6 h-80 w-[180px] rounded-[10px] border border-[#e2e2e2] bg-white px-3 transition duration-300 hover:border-[#666] hover:bg-[#f7f7f7]"
       >
         {/* 썸네일 이미지 */}
         <div className="">

@@ -15,9 +15,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class SchedulerConfig {
     SeoulOpenDataService seoulOpenDataService;
 
-    @Scheduled(fixedDelay = 1000 * 60 * 60 * 24, initialDelay = 3000)   /* 3초후 시작, 24시간 후 업데이트 */
-    void runFestivalDataJob() {
-        seoulOpenDataService.fetchFestivalData();
+    @Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
+    void runFestivalDateEndJob() {
+        seoulOpenDataService.endFestival();
     }
 
+//    @Scheduled(fixedDelay = 1000 * 60 * 60 * 24)   /* 24 시간 후 업데이트 */
+//    void runFestivalDataUpdateJob() {
+//        seoulOpenDataService.updateFestivalData();
+//    }
 }

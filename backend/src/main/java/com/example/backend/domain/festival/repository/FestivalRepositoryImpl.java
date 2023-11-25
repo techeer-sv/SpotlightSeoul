@@ -18,6 +18,7 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	private final JPAQueryFactory queryFactory;
@@ -37,8 +38,13 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 						.offset(pageable.getOffset())
 						.limit(pageable.getPageSize())
 						.fetchResults();
+
+		   if(results.getResults().isEmpty()){
+			   throw new NoResultException("검색결과가 없습니다.");
+		   }
 		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 		}
+
 
 	@Override
 	public Page<Festival> filter(FestivalFilterSearchResponse response, Pageable pageable){
@@ -51,7 +57,7 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 				strtDateEq(response.getStrtDate()),
 				placeEq(response.getPlace()),
 				isFreeEq(response.getIsFree()),
-				titleEq(response.getTitle()))
+				titleContains(response.getTitle()))
 			.offset(pageable.getOffset())
 			.limit(pageable.getPageSize())
 			.fetchResults();
@@ -62,8 +68,8 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 	private BooleanExpression guNameEq(String guName) {
 		return hasText(guName) ? festival.guName.eq(guName) : null;
 	}
-	private BooleanExpression titleEq(String title) {
-		return hasText(title) ? festival.title.eq(title) : null;
+	private BooleanExpression titleContains(String title) {
+		return hasText(title) ? festival.title.contains(title) : null;
 	}
 
 	private BooleanExpression majorCodeNameEq(String majorCodeName) {
@@ -88,6 +94,34 @@ public class FestivalRepositoryImpl implements FestivalRepositoryCustom{
 
 	private BooleanExpression isFreeEq(String isFree) {
 		return hasText(isFree) ? festival.isFree.eq(isFree) : null;
+	}
+
+	@Override
+	public Page<Festival> mostView(Integer festivalView, Pageable pageable){
+		BooleanExpression predicate = festivalView != null ? festival.festivalLike.gt(festivalView) : null;
+		QueryResults<Festival> results = queryFactory
+			.selectFrom(festival)
+			.where(predicate)
+			.orderBy(festival.festivalView.desc())
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.fetchResults();
+
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+	}
+
+	@Override
+	public Page<Festival> mostLike(Integer festivalLike, Pageable pageable){
+		BooleanExpression predicate = festivalLike != null ? festival.festivalLike.gt(festivalLike) : null;
+		QueryResults<Festival> results = queryFactory
+			.selectFrom(festival)
+			.where(predicate)
+			.orderBy(festival.festivalLike.desc())
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize())
+			.fetchResults();
+
+		return new PageImpl<>(results.getResults(), pageable, results.getTotal());
 	}
 
 }

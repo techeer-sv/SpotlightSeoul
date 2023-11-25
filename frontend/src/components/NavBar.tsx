@@ -35,40 +35,44 @@ function NavBar() {
 
   const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      try {
-        // 검색 API
-        const response = await axios.post<searchResponseData>(
-          'http://localhost:8080/api/v1/festivals',
-          { title: searchTitle },
-        );
-        const searchResponseData: searchResponseData = response.data;
+      if (searchTitle !== '') {
+        try {
+          // 검색 API
+          const response = await axios.post<searchResponseData>(
+            'http://localhost:8080/api/v1/festivals',
+            { title: searchTitle },
+          );
+          const searchResponseData: searchResponseData = response.data;
 
-        const postCardDataArray: PostCardData[] =
-          searchResponseData.post_responses.map((post) => ({
-            id: post.id,
-            org_name: post.org_name,
-            main_img: post.main_img,
-            strt_date: post.strt_date,
-            end_date: post.end_date,
-            title: post.title,
-            major_code_name: post.major_code_name,
-            date: post.date,
-          }));
+          const postCardDataArray: PostCardData[] =
+            searchResponseData.post_responses.map((post) => ({
+              id: post.id,
+              org_name: post.org_name,
+              main_img: post.main_img,
+              strt_date: post.strt_date,
+              end_date: post.end_date,
+              title: post.title,
+              major_code_name: post.major_code_name,
+              date: post.date,
+            }));
 
-        setSearchResults(postCardDataArray);
-        navigate('/');
-        window.scrollTo(0, 0);
-      } catch (error) {
-        console.log(error);
+          setSearchResults(postCardDataArray);
+          navigate('/');
+          window.scrollTo(0, 0);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert('검색어를 입력해주세요.');
       }
     }
   };
 
   return (
     <div className="sticky top-0 z-50">
-      <div className="flex h-14 w-screen items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
+      <div className="flex h-14 w-full items-center justify-between border-b-[1px] border-solid border-[#C6C6C6] bg-white md:h-16">
         {/* 로고 */}
-        <div className="flex basis-1/4">
+        <div className="flex basis-1/4 justify-center">
           <button
             className="ml-5 text-left font-LexendDeca text-xl font-bold md:text-2xl"
             type="button"
@@ -91,7 +95,19 @@ function NavBar() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <div className="flex basis-1/4" />
+        <div className="flex basis-1/4 justify-center">
+          <button
+            onClick={() => {
+              navigate('/login');
+            }}
+            className="duration-400 rounded-md border-2 border-[#06439F] px-3 py-2 font-LexendDeca text-[#06439F] hover:border-[#06439F] hover:bg-[#f7f7f7]"
+          >
+            Login
+          </button>
+          {/* <button className="duration-400 rounded-md border-2 border-[#FFDB59] px-3 py-2 font-LexendDeca text-[#FFDB59] hover:border-[#EDC431] hover:bg-[#fffdfd] hover:text-[#EDC431]">
+          Logout
+        </button> */}
+        </div>
       </div>
     </div>
   );

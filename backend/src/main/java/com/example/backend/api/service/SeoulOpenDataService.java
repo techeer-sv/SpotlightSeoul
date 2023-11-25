@@ -21,19 +21,42 @@ public class SeoulOpenDataService {
     @Transactional
     public void fetchFestivalData() {
         FestivalAPIResponse healthCheckResponse =
-            seoulOpenDataFestivalFetchAPI.fetchAPI(FestivalAPIRequest.healthCheckRequest());
+            seoulOpenDataFestivalFetchAPI.fetchApi(FestivalAPIRequest.healthCheckRequest());
         int totalCount = healthCheckResponse.getCulturalEventInfo().getListTotalCount();
         for (int i = 1; i < totalCount; i += 999) {
             FestivalAPIResponse festivalAPIResponse =
-                seoulOpenDataFestivalFetchAPI.fetchAPI(
+                seoulOpenDataFestivalFetchAPI.fetchApi(
                     FestivalAPIRequest.toRequest(i, 999));
             saveFestivalData(festivalAPIResponse.getCulturalEventInfo().getRow());
         }
     }
 
     private void saveFestivalData(List<FestivalRow> festivalRows) {
-        for (FestivalRow row : festivalRows) {
-            festivalService.saveFestival(row);
+
+        festivalService.saveFestivalAllRows(festivalRows);
+    }
+
+    @Transactional
+    public void updateFestivalData() {
+        FestivalAPIResponse healthCheckResponse =
+                seoulOpenDataFestivalFetchAPI.fetchApi(FestivalAPIRequest.healthCheckRequest());
+        int totalCount = healthCheckResponse.getCulturalEventInfo().getListTotalCount();
+        for (int i = 1; i < totalCount; i += 999) {
+            FestivalAPIResponse festivalAPIResponse =
+                    seoulOpenDataFestivalFetchAPI.fetchApi(
+                            FestivalAPIRequest.toRequest(i, 999));
+            updateFestivalData(festivalAPIResponse.getCulturalEventInfo().getRow());
         }
+    }
+
+    private void updateFestivalData(List<FestivalRow> festivalRows) {
+        for (FestivalRow row : festivalRows) {
+            festivalService.updateFestival(row);
+        }
+    }
+
+    @Transactional
+    public void endFestival() {
+        festivalService.endFestivalByOverDate();
     }
 }

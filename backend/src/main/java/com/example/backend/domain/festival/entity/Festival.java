@@ -10,10 +10,15 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Where;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Where(clause = "is_end is null")
 public class Festival {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +39,29 @@ public class Festival {
     private String place;
     private String title;
     private String isFree;
+    @ColumnDefault("0")
+    private Integer festivalView;
+    @ColumnDefault("0")
+    private Integer festivalLike;
+    private Boolean isEnd;
+
+    public void updateFestivalView() {
+        this.festivalView++;
+    }
+
+    public void updateFestivalLike() {
+        this.festivalLike++;
+    }
+
+    public void end() {
+        this.isEnd = true;
+    }
 
     @Builder
-    public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt, String date, LocalDateTime endDate,
-        LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place, String title, String isFree) {
+    public Festival(String majorCodenName, String subCodeName, String guName, String orgName, String useTrgt,
+                    String date, LocalDateTime endDate,
+                    LocalDateTime strtDate, String orgLink, String mainImg, Double lat, Double lot, String place,
+                    String title, String isFree, Integer festivalView, Integer festivalLike) {
         this.majorCodeName = majorCodenName;
         this.subCodeName = subCodeName;
         this.guName = guName;
@@ -53,5 +77,7 @@ public class Festival {
         this.place = place;
         this.title = title;
         this.isFree = isFree;
+        this.festivalView = festivalView;
+        this.festivalLike = festivalLike;
     }
 }
