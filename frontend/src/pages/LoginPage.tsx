@@ -28,7 +28,12 @@ function LoginPage() {
             type="password"
             placeholder="PassWord"
           />
-          <button className="rounded-md bg-[#06439F] py-2 font-light text-white">
+          <button
+            className="rounded-md bg-[#06439F] py-2 font-light text-white"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
             Login
           </button>
           <button
