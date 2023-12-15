@@ -19,6 +19,5 @@ public class UserUpdateRequest {
 	@NotBlank
 	private String password;
 	private String email;
-	private String location;
 
 }

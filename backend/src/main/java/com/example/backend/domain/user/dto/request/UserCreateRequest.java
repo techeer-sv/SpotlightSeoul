@@ -18,7 +18,5 @@ public class UserCreateRequest {
 	private String password;
 	@NotNull
 	private String email;
-	@NotNull
-	private String location;
 
 }
